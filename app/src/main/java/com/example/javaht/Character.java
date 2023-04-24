@@ -11,6 +11,7 @@ public class Character {
     private ArrayList<ItemSlot> items;
     private int level;
     private int xp;
+    private int battlesWon;
     private final static int startingLevel = 10;
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
 
@@ -23,14 +24,16 @@ public class Character {
         }
         this.level = startingLevel;
         this.xp = 0;
+        this.battlesWon = 0;
     }
 
-    public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp) {
+    public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp, int battlesWon) {
         this.name = name;
         this.stats = new ArrayList<>(stats);
         this.items = new ArrayList<>(items);
         this.level = level;
         this.xp = xp;
+        this.battlesWon = battlesWon;
     }
 
     public void setName(String name) {
@@ -91,6 +94,10 @@ public class Character {
         return xp;
     }
 
+    public int getBattlesWon() {
+        return battlesWon;
+    }
+
     public int changeXp(int amount) {
         // 0 = all is ok, did NOT level up
         // 1 = all is ok, did level up
@@ -106,6 +113,18 @@ public class Character {
 
     private void levelUp() {
         level++;
+    }
+
+    private void addToBattlesWon() {
+        battlesWon++;
+    }
+
+    private void addToBattlesWon(int amount) {
+        if (battlesWon + amount < 1) {
+            battlesWon = 0;
+        } else {
+            battlesWon += amount;
+        }
     }
 
     public void changeStat(StatChange statChange) {
