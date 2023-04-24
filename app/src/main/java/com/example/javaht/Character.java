@@ -42,30 +42,32 @@ public class Character {
 
     private static ArrayList<Stat> getRandomizedStats (int level) {
         Random r = new Random();
-        int hp = 1;
-        int atk = 1;
-        int def = 1;
+        final int statsInitialized = 3;
+        int pointsAdded = statsInitialized;
+        ArrayList<Stat> stats = new ArrayList<Stat>();
+        stats.add(new Stat("Health", 1));
+        stats.add(new Stat("Attack", 1));
+        stats.add(new Stat("Defense", 1));
         int hpOdds;
         int atkOdds;
         int defOdds;
         int randInt;
-        while (hp + atk + def < level) {
-            hpOdds = Math.round((hp + atk + def) / hp);
-            atkOdds = Math.round((hp + atk + def) / atk);
-            defOdds = Math.round((hp + atk + def) / def);
-            randInt = r.nextInt(hp + atk + def) + 1;
+        while (pointsAdded < level+statsInitialized) {
+            hpOdds = Math.round(pointsAdded / stats.get(0).getLevel());
+            atkOdds = Math.round(pointsAdded / stats.get(1).getLevel());
+            defOdds = Math.round(pointsAdded / stats.get(2).getLevel());
+            randInt = r.nextInt(pointsAdded) + 1;
             if (randInt <= hpOdds) {
-                hp++;
+                stats.get(0).changeLevel(1);
             } else if (randInt <= atkOdds + hpOdds) {
-                atk++;
+                stats.get(0).changeLevel(1);
             } else if (randInt <= defOdds + atkOdds + hpOdds) {
-                def++;
+                stats.get(0).changeLevel(1);
             }
+            pointsAdded++;
         }
-        ArrayList<Stat> stats = new ArrayList<Stat>();
-        stats.add(new Stat("Health", r.nextInt(2)+1+2*hp));
-        stats.add(new Stat("Attack", 1+2*atk));
-        stats.add(new Stat("Defense", 1+2*def));
+        // double the hp stat
+        stats.get(0).changeLevel(stats.get(0).getLevel() + r.nextInt(2));
         return stats;
     }
 
