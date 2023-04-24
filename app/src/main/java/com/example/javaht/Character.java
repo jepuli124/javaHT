@@ -130,7 +130,7 @@ public class Character {
     public void changeStat(StatChange statChange) {
         boolean foundStat = false;
         for (Stat stat : stats) {
-            if (stat.getName().matches(statChange.getName())) {
+            if (stat.getName().equals(statChange.getName())) {
                 stat.changeLevel(statChange.getValue());
                 foundStat = true;
                 break;
@@ -145,7 +145,7 @@ public class Character {
         boolean foundStat = false;
         for (StatChange statChange :statChanges) {
             for (Stat stat : stats) {
-                if (stat.getName().matches(statChange.getName())) {
+                if (stat.getName().equals(statChange.getName())) {
                     stat.changeLevel(statChange.getValue());
                     foundStat = true;
                     break;
@@ -161,7 +161,7 @@ public class Character {
     public void changeStat(String name, int change) {
         boolean foundStat = false;
         for (Stat stat : stats) {
-            if (stat.getName().matches(name)) {
+            if (stat.getName().equals(name)) {
                 stat.changeLevel(change);
                 foundStat = true;
                 break;
@@ -178,7 +178,7 @@ public class Character {
             if (itemSlot.getItem() != null) {
                 for (StatChange effect : itemSlot.getItem().getEffects()) {
                     for (Stat stat : stats) {
-                        if (stat.getName().matches(effect.getName())) {
+                        if (stat.getName().equals(effect.getName())) {
                             stat.changeLevel(effect.getValue());
                             foundStat = true;
                             break;
