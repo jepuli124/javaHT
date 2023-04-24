@@ -16,4 +16,9 @@ public class CharacterStorage {
         characters.add(character);
     }
 
+    public void removeCharacter(int id){
+        characters.remove(id);
+    }
+
+
 }
