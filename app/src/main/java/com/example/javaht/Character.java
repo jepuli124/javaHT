@@ -14,12 +14,32 @@ public class Character {
     private int battlesWon;
     private final static int startingLevel = 10;
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
+    // the following is used for creating enemy names and may or may not be a list of creature types from a certain card game
+    private final static List<String> mtgCreatureTypes = Arrays.asList("Advisor", "Aetherborn", "Ally", "Angel", "Anteater", "Antelope", "Ape", "Archer", "Archon", "Artificer", "Assassin", "Assembly-Worker", "Atog", "Aurochs", "Avatar", "Badger", "Barbarian", "Basilisk", "Bat", "Bear", "Beast", "Beeble", "Berserker", "Bird", "Blinkmoth", "Boar", "Bringer", "Brushwagg", "Camarid", "Camel", "Caribou", "Carrier", "Cat", "Centaur", "Cephalid", "Chimera", "Citizen", "Cleric", "Cockatrice", "Construct", "Coward", "Crab", "Crocodile", "Cyclops", "Dauthi", "Demon", "Deserter", "Devil", "Dinosaur", "Djinn", "Dragon", "Drake", "Dreadnought", "Drone", "Druid", "Dryad", "Dwarf", "Efreet", "Elder", "Eldrazi", "Elemental", "Elephant", "Elf", "Elk", "Eye", "Faerie", "Ferret", "Fish", "Flagbearer", "Fox", "Frog", "Fungus", "Gargoyle", "Germ", "Giant", "Gnome", "Goat", "Goblin", "God", "Golem", "Gorgon", "Graveborn", "Gremlin", "Griffin", "Hag", "Harpy", "Hellion", "Hippo", "Hippogriff", "Hormarid", "Homunculus", "Horror", "Horse", "Hound", "Human", "Hydra", "Hyena", "Illusion", "Imp", "Incarnation", "Insect", "Jellyfish", "Juggernaut", "Kavu", "Kirin", "Kithkin", "Knight", "Kobold", "Kor", "Kraken", "Lamia", "Lammasu", "Leech", "Leviathan", "Lhurgoyf", "Licid", "Lizard", "Manticore", "Masticore", "Mercenary", "Merfolk", "Metathran", "Minion", "Minotaur", "Mole", "Monger", "Mongoose", "Monk", "Moonfolk", "Mutant", "Myr", "Mystic", "Naga", "Nautilus", "Nephilim", "Nightmare", "Nightstalker", "Ninja", "Noggle", "Nomad", "Nymph", "Octopus", "Ogre", "Ooze", "Orb", "Orc", "Orgg", "Ouphe", "Ox", "Oyster", "Pegasus", "Pentavite", "Pest", "Phelddagrif", "Phoenix", "Pincher", "Pirate", "Plant", "Praetor", "Prism", "Processor", "Rabbit", "Rat", "Rebel", "Reflection", "Rhino", "Rigger", "Rogue", "Sable", "Salamander", "Samurai", "Sand", "Saproling", "Satyr", "Scarecrow", "Scion", "Scorpion", "Scout", "Serf", "Serpent", "Shade", "Shaman", "Shapeshifter", "Sheep", "Siren", "Skeleton", "Slith", "Sliver", "Slug", "Snake", "Soldier", "Soltari", "Spawn", "Specter", "Spellshaper", "Sphinx", "Spider", "Spike", "Spirit", "Splinter", "Sponge", "Squid", "Squirrel", "Starfish", "Surrakar", "Survivor", "Tetravite", "Thalakos", "Thopter", "Thrull", "Treefolk", "Triskelavite", "Troll", "Turtle", "Unicorn", "Vampire", "Vedalken", "Viashino", "Volver", "Wall", "Warrior", "Weird", "Werewolf", "Whale", "Wizard", "Wolf", "Wolverine", "Wombat", "Worm", "Wraith", "Wurm", "Yeti", "Zombie", "Zubera");
 
     public Character() {
         this.name = "";
         this.stats = new ArrayList<Stat>(getRandomizedStats(startingLevel));
         this.items = new ArrayList<ItemSlot>();
         for (int i = 0; i < basicItemLoadout.size(); i++) {
+            this.items.add(basicItemLoadout.get(i));
+        }
+        this.level = startingLevel;
+        this.xp = 0;
+        this.battlesWon = 0;
+    }
+
+    public Character(int level) {
+        // used to generate enemies
+        Random r = new Random();
+        int i = 0;
+        while (i <= r.nextInt(2) + 2) {
+            this.name += mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
+            i++;
+        }
+        this.stats = new ArrayList<Stat>(getRandomizedStats(level));
+        this.items = new ArrayList<ItemSlot>();
+        for (i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
         }
         this.level = startingLevel;
@@ -43,7 +63,7 @@ public class Character {
     private static ArrayList<Stat> getRandomizedStats (int level) {
         Random r = new Random();
         final int statsInitialized = 3;
-        int pointsAdded = statsInitialized;
+        float pointsAdded = statsInitialized;
         ArrayList<Stat> stats = new ArrayList<Stat>();
         stats.add(new Stat("Health", 1));
         stats.add(new Stat("Attack", 1));
@@ -56,7 +76,7 @@ public class Character {
             hpOdds = Math.round(pointsAdded / stats.get(0).getLevel());
             atkOdds = Math.round(pointsAdded / stats.get(1).getLevel());
             defOdds = Math.round(pointsAdded / stats.get(2).getLevel());
-            randInt = r.nextInt(pointsAdded) + 1;
+            randInt = r.nextInt(Math.round(pointsAdded)) + 1;
             if (randInt <= hpOdds) {
                 stats.get(0).changeLevel(1);
             } else if (randInt <= atkOdds + hpOdds) {
