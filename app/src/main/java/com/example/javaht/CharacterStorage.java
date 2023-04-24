@@ -3,9 +3,17 @@ package com.example.javaht;
 import java.util.ArrayList;
 
 public class CharacterStorage {
-    ArrayList<Character> characters = new ArrayList<>();
+    private ArrayList<Character> characters = new ArrayList<>();
 
+    private static CharacterStorage characterStorage = null;
     public CharacterStorage() {
+    }
+
+    public static CharacterStorage getInstance(){
+        if(characterStorage == null){
+            characterStorage = new CharacterStorage();
+        }
+        return characterStorage;
     }
 
     public ArrayList<Character> getCharacters() {
