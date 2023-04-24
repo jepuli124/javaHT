@@ -18,6 +18,10 @@ public class Stat {
     }
 
     public void changeLevel(int amount) {
-        level += amount;
+        if (level + amount < 1) {
+            level = 0;
+        } else {
+            level += amount;
+        }
     }
 }

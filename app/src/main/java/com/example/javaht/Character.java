@@ -3,11 +3,12 @@ package com.example.javaht;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Character {
     private String name;
     private ArrayList<Stat> stats;
-    private ArrayList<ItemSlot> itemLoadout;
+    private ArrayList<ItemSlot> items;
     private int level;
     private int xp;
     private final static int startingLevel = 10;
@@ -15,25 +16,54 @@ public class Character {
 
     public Character() {
         this.name = "";
-        this.stats = new ArrayList<Stat>();
-        this.itemLoadout = new ArrayList<ItemSlot>();
+        this.stats = new ArrayList<Stat>(getRandomizedStats(startingLevel));
+        this.items = new ArrayList<ItemSlot>();
         for (int i = 0; i < basicItemLoadout.size(); i++) {
-            this.itemLoadout.add(basicItemLoadout.get(i));
+            this.items.add(basicItemLoadout.get(i));
         }
         this.level = startingLevel;
         this.xp = 0;
+    }
+
+    public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp) {
+        this.name = name;
+        this.stats = new ArrayList<>(stats);
+        this.items = new ArrayList<>(items);
+        this.level = level;
+        this.xp = xp;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> itemLoadout, int level, int xp) {
-        this.name = name;
-        this.stats = new ArrayList<>(stats);
-        this.itemLoadout = new ArrayList<>(itemLoadout);
-        this.level = level;
-        this.xp = xp;
+    private static ArrayList<Stat> getRandomizedStats (int level) {
+        Random r = new Random();
+        int hp = 1;
+        int atk = 1;
+        int def = 1;
+        int hpOdds;
+        int atkOdds;
+        int defOdds;
+        int randInt;
+        while (hp + atk + def < level) {
+            hpOdds = Math.round((hp + atk + def) / hp);
+            atkOdds = Math.round((hp + atk + def) / atk);
+            defOdds = Math.round((hp + atk + def) / def);
+            randInt = r.nextInt(hp + atk + def) + 1;
+            if (randInt <= hpOdds) {
+                hp++;
+            } else if (randInt <= atkOdds + hpOdds) {
+                atk++;
+            } else if (randInt <= defOdds + atkOdds + hpOdds) {
+                def++;
+            }
+        }
+        ArrayList<Stat> stats = new ArrayList<Stat>();
+        stats.add(new Stat("Health", r.nextInt(2)+1+2*hp));
+        stats.add(new Stat("Attack", 1+2*atk));
+        stats.add(new Stat("Defense", 1+2*def));
+        return stats;
     }
 
     public int getRequiredXp() {
@@ -49,8 +79,8 @@ public class Character {
         return stats;
     }
 
-    public ArrayList<ItemSlot> getItemLoadout() {
-        return itemLoadout;
+    public ArrayList<ItemSlot> getItems() {
+        return items;
     }
 
     public int getLevel() {
@@ -97,9 +127,9 @@ public class Character {
         for (StatChange statChange :statChanges) {
             for (Stat stat : stats) {
                 if (stat.getName().matches(statChange.getName())) {
-                stat.changeLevel(statChange.getValue());
-                foundStat = true;
-                break;
+                    stat.changeLevel(statChange.getValue());
+                    foundStat = true;
+                    break;
                 }
             }
             if (!foundStat) { //if corresponding stat is not found, create such stat
@@ -125,7 +155,7 @@ public class Character {
 
     public void applyItems() {
         boolean foundStat = false;
-        for (ItemSlot itemSlot : itemLoadout) {
+        for (ItemSlot itemSlot : items) {
             if (itemSlot.getItem() != null) {
                 for (StatChange effect : itemSlot.getItem().getEffects()) {
                     for (Stat stat : stats) {
