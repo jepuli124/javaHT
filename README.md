@@ -34,4 +34,9 @@ choose_enemy:
 
 fight_page:
 - textViewBatlefield
-- StartFightButton
+
+
+Stat names:
+Health
+Attack
+Defense
