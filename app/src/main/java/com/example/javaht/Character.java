@@ -50,8 +50,8 @@ public class Character {
     public Character(Character original) {
         // essentially copies given character
         this.name = original.getName();
-        this.stats = new ArrayList<>(original.getStats());
-        this.items = new ArrayList<>(original.getItems());
+        this.stats = new ArrayList<Stat>(original.getStats());
+        this.items = new ArrayList<ItemSlot>(original.getItems());
         this.level = original.getLevel();
         this.xp = original.getXp();
         this.battlesWon = original.getBattlesWon();
