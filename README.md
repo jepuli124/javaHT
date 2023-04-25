@@ -12,6 +12,7 @@ character_view:
 - textViewName
 - textViewLevel
 - ChooseButton
+- imageViewCharacter
 
 gamemode_menu:
 - CharacterGameButton
@@ -23,6 +24,7 @@ add_character_page:
 
 graveyard_page:
 - DeadRecyclerView
+- GraveyardBack
 
 dead_character_view:
 - textViewWinAmount
@@ -34,7 +36,7 @@ choose_enemy:
 
 fight_page:
 - textViewBatlefield
-
+- StartFightButton
 
 Stat names:
 Health
