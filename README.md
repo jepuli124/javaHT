@@ -31,3 +31,6 @@ dead_character_view:
 
 choose_enemy:
 - CharacterRecyclerView2
+
+fight_page:
+- textViewBatlefield
