@@ -34,3 +34,4 @@ choose_enemy:
 
 fight_page:
 - textViewBatlefield
+- StartFightButton
