@@ -28,3 +28,6 @@ dead_character_view:
 - textViewWinAmount
 - textViewNameDead
 - textViewLevelDead
+
+choose_enemy:
+- CharacterRecyclerView2
