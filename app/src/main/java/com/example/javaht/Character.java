@@ -47,6 +47,16 @@ public class Character {
         this.battlesWon = 0;
     }
 
+    public Character(Character original) {
+        // essentially copies given character
+        this.name = original.getName();
+        this.stats = new ArrayList<>(original.getStats());
+        this.items = new ArrayList<>(original.getItems());
+        this.level = original.getLevel();
+        this.xp = original.getXp();
+        this.battlesWon = original.getBattlesWon();
+    }
+
     public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp, int battlesWon) {
         this.name = name;
         this.stats = new ArrayList<>(stats);
