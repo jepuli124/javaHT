@@ -50,8 +50,8 @@ public class Character {
     public Character(Character original) {
         // essentially copies given character
         this.name = original.getName();
-        this.stats = new ArrayList<>(original.getStats());
-        this.items = new ArrayList<>(original.getItems());
+        this.stats = new ArrayList<Stat>(original.getStats());
+        this.items = new ArrayList<ItemSlot>(original.getItems());
         this.level = original.getLevel();
         this.xp = original.getXp();
         this.battlesWon = original.getBattlesWon();
@@ -68,6 +68,17 @@ public class Character {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Stat getStatByName(String name) {
+        for (Stat stat : this.getStats()) {
+            if (stat.getName().equals(name)) {
+                return stat;
+            }
+        }
+        // if stat isn't found, add and return such stat with level 0
+        this.getStats().add(new Stat(name, 0));
+        return this.getStatByName(name);
     }
 
     private static ArrayList<Stat> getRandomizedStats (int level) {
@@ -160,67 +171,24 @@ public class Character {
     }
 
     public void changeStat(StatChange statChange) {
-        boolean foundStat = false;
-        for (Stat stat : stats) {
-            if (stat.getName().equals(statChange.getName())) {
-                stat.changeLevel(statChange.getValue());
-                foundStat = true;
-                break;
-            }
-        }
-        if (!foundStat) { //if corresponding stat is not found, create such stat
-            stats.add(new Stat(statChange.getName(), statChange.getValue()));
-        }
+        this.getStatByName(statChange.getName()).changeLevel(statChange.getValue());
     }
 
     public void changeStat(ArrayList<StatChange> statChanges) {
-        boolean foundStat = false;
         for (StatChange statChange :statChanges) {
-            for (Stat stat : stats) {
-                if (stat.getName().equals(statChange.getName())) {
-                    stat.changeLevel(statChange.getValue());
-                    foundStat = true;
-                    break;
-                }
-            }
-            if (!foundStat) { //if corresponding stat is not found, create such stat
-                stats.add(new Stat(statChange.getName(), statChange.getValue()));
-            }
-            foundStat = false;
+            this.changeStat(statChange);
         }
     }
 
     public void changeStat(String name, int change) {
-        boolean foundStat = false;
-        for (Stat stat : stats) {
-            if (stat.getName().equals(name)) {
-                stat.changeLevel(change);
-                foundStat = true;
-                break;
-            }
-        }
-        if (!foundStat) { //if corresponding stat is not found, create such stat
-            stats.add(new Stat(name, change));
-        }
+        getStatByName(name).changeLevel(change);
     }
 
     public void applyItems() {
         boolean foundStat = false;
         for (ItemSlot itemSlot : items) {
             if (itemSlot.getItem() != null) {
-                for (StatChange effect : itemSlot.getItem().getEffects()) {
-                    for (Stat stat : stats) {
-                        if (stat.getName().equals(effect.getName())) {
-                            stat.changeLevel(effect.getValue());
-                            foundStat = true;
-                            break;
-                        }
-                    }
-                    if (!foundStat) { //if corresponding stat is not found, create such stat
-                        stats.add(new Stat(effect.getName(), effect.getValue()));
-                    }
-                    foundStat = false;
-                }
+                this.changeStat(itemSlot.getItem().getEffects());
             }
         }
     }
