@@ -9,14 +9,15 @@
 
     <ImageView
         android:id="@+id/GraveyardBack"
-        android:layout_width="66dp"
-        android:layout_height="54dp"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:onClick="changeLayoutToHomePage"
         app:layout_constraintBottom_toTopOf="@+id/DeadRecyclerView"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <androidx.recyclerview.widget.RecyclerView

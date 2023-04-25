@@ -21,24 +21,39 @@
 
     <Button
         android:id="@+id/AddCharacterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="93dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="8dp"
         android:text="Lisää hahmo"
         app:layout_constraintBottom_toTopOf="@+id/CharacterRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Valitse hahmo tai luo uusi"
-        android:textSize="20sp"
+        android:layout_width="155dp"
+        android:layout_height="49dp"
+        android:text="Valitse hahmo"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/CharacterRecyclerView"
         app:layout_constraintEnd_toStartOf="@+id/AddCharacterButton"
+        app:layout_constraintHorizontal_bias="0.825"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <ImageView
+        android:id="@+id/CharacterListBack"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:onClick="changeLayoutToHomePage"
+        app:layout_constraintBottom_toTopOf="@+id/CharacterRecyclerView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
