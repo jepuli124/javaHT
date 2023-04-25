@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_marginLeft="20dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="10dp"
     android:layout_marginRight="20dp"
     android:background="#2098F8">
 
+    <ImageView
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/crusader_154623_1280" />
+
     <LinearLayout
-        android:layout_width="250dp"
+        android:layout_width="220dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewNameDead"
+            android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Name"
-            android:textAlignment="center" />
+            android:layout_marginLeft="10dp"
+            android:gravity="clip_horizontal"
+            android:text="Nimi" />
 
         <TextView
-            android:id="@+id/textViewLevelDead"
+            android:id="@+id/textViewLevel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Level"
-            android:textAlignment="center" />
+            android:layout_marginLeft="10dp"
+            android:gravity="clip_horizontal"
+            android:text="Taso" />
 
     </LinearLayout>
 
@@ -34,8 +44,8 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/ChooseButton"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
             android:text="Valitse" />
