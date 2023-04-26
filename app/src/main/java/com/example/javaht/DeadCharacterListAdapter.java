@@ -12,11 +12,10 @@ import java.util.ArrayList;
 public class DeadCharacterListAdapter extends RecyclerView.Adapter<DeadCharacterViewHolder> {
 
     private Context context;
-    private ArrayList<Character> deadList = new ArrayList<>();
 
-    public DeadCharacterListAdapter(Context context, ArrayList<Character> deadList)    {
+
+    public DeadCharacterListAdapter(Context context)    {
         this.context = context;
-        this.deadList = deadList;
     }
 
     @NonNull
@@ -27,13 +26,13 @@ public class DeadCharacterListAdapter extends RecyclerView.Adapter<DeadCharacter
 
     @Override
     public void onBindViewHolder(@NonNull DeadCharacterViewHolder holder, int position) {
-        holder.CharacterName.setText(deadList.get(position).getName());
-        holder.CharacterLevel.setText("Taso: " + Integer.toString(deadList.get(position).getLevel()));
-        holder.WinAmount.setText(Integer.toString(deadList.get(position).getBattlesWon()));
+        holder.CharacterName.setText(Graveyard.getInstance().getCharacters().get(position).getName());
+        holder.CharacterLevel.setText("Taso: " + Integer.toString(Graveyard.getInstance().getCharacters().get(position).getLevel()));
+        holder.WinAmount.setText(Integer.toString(Graveyard.getInstance().getCharacters().get(position).getBattlesWon()));
     }
 
     @Override
     public int getItemCount() {
-        return deadList.size();
+        return Graveyard.getInstance().getCharacters().size();
     }
 }

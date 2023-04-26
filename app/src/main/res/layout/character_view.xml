@@ -13,7 +13,7 @@
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/crusader_154623_1280" />
+        android:src="@drawable/crusader_154623_1280" />
 
     <LinearLayout
         android:layout_width="220dp"

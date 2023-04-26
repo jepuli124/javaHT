@@ -1,6 +1,8 @@
 package com.example.javaht;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.widget.ImageView;
 public class CharacterListActivity extends AppCompatActivity {
 
     private ImageView backButton;
+    private RecyclerView recyclerView;
+    private CharacterListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,11 @@ public class CharacterListActivity extends AppCompatActivity {
         setContentView(R.layout.character_list);
 
         backButton = findViewById(R.id.CharacterListBack);
+        recyclerView = findViewById(R.id.CharacterRecyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CharacterListAdapter(getApplicationContext());
+        recyclerView.setAdapter(adapter);
     }
 
     public void changeLayoutToHomePage(View view)   {

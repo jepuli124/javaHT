@@ -14,7 +14,6 @@ public class GraveyardActivity extends AppCompatActivity {
     private ImageView backButton;
     private RecyclerView recyclerView;
     private DeadCharacterListAdapter adapter;
-    private Graveyard graveStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,9 @@ public class GraveyardActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.GraveyardBack);
         recyclerView = findViewById(R.id.DeadRecyclerView);
-        graveStorage = Graveyard.getInstance();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DeadCharacterListAdapter(getApplicationContext(), graveStorage.getCharacters());
+        adapter = new DeadCharacterListAdapter(getApplicationContext());
         recyclerView.setAdapter(adapter);
     }
 
