@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         playButton = findViewById(R.id.PlayButton);
         graveyardButton = findViewById(R.id.GraveyardButton);
         graveStorage = Graveyard.getInstance();
-        newCharacter = new Character();
+        newCharacter = new Character("Chad");
     }
 
     public void changeLayoutToCharacterList(View view)   {

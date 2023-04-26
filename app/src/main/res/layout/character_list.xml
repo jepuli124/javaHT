@@ -24,6 +24,7 @@
         android:layout_width="93dp"
         android:layout_height="72dp"
         android:layout_marginEnd="8dp"
+        android:onClick="addCharacterPage"
         android:text="Lisää hahmo"
         app:layout_constraintBottom_toTopOf="@+id/CharacterRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"

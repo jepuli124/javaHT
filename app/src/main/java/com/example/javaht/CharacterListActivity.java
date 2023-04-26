@@ -23,4 +23,11 @@ public class CharacterListActivity extends AppCompatActivity {
         Intent intent = new Intent(CharacterListActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void addCharacterPage(View view){
+        Intent intent = new Intent(CharacterListActivity.this, AddCharacterActivity.class);
+        startActivity(intent);
+
+    }
+
 }
