@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder{
     TextView characterName, characterLevel;
-    ImageView characterImage;
+    ImageView characterImage, imgDel;
     Button chooseButton;
 
 
@@ -19,5 +19,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder{
         characterName = itemView.findViewById(R.id.textViewName);
         characterLevel = itemView.findViewById(R.id.textViewLevel);
         characterImage = itemView.findViewById(R.id.imageViewCharacter);
+        imgDel = itemView.findViewById(R.id.imgDel);
+        chooseButton = itemView.findViewById(R.id.ChooseButton);
     }
 }

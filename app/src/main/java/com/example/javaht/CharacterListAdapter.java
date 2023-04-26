@@ -1,6 +1,7 @@
 package com.example.javaht;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,20 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
         holder.characterName.setText(CharacterStorage.getInstance().getCharacters().get(position).getName());
         holder.characterLevel.setText("Taso: " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getLevel()));
         holder.characterImage.setVisibility(View.VISIBLE);
+        holder.imgDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                CharacterStorage.getInstance().removeCharacter(pos);
+                notifyItemRemoved(pos);
+            }
+        });
+        holder.chooseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

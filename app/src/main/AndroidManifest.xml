@@ -21,6 +21,9 @@
             android:name=".AddCharacterActivity"
             android:exported="false" />
         <activity
+            android:name=".ChooseGameModeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

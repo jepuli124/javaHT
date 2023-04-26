@@ -25,6 +25,7 @@ public class CharacterStorage {
     }
 
     public void removeCharacter(int id){
+        Graveyard.getInstance().addCharacter(characters.get(id));
         characters.remove(id);
     }
 

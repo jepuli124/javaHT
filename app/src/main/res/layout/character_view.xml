@@ -46,9 +46,15 @@
         <Button
             android:id="@+id/ChooseButton"
             android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
+            android:layout_height="40dp"
             android:text="Valitse" />
+
+        <ImageView
+            android:id="@+id/imgDel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_forever_24" />
+
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

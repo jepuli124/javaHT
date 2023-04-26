@@ -36,7 +36,9 @@ public class CharacterListActivity extends AppCompatActivity {
     public void addCharacterPage(View view){
         Intent intent = new Intent(CharacterListActivity.this, AddCharacterActivity.class);
         startActivity(intent);
-
     }
-
+    public void chooseFight(View view){
+        Intent intent = new Intent(CharacterListActivity.this, ChooseGameModeActivity.class);
+        startActivity(intent);
+    }
 }
