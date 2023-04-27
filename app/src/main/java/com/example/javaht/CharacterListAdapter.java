@@ -33,12 +33,15 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
                 CharacterStorage.getInstance().removeCharacter(pos);
+                CharacterStorage.getInstance().saveCharacters(view.getContext());
                 notifyItemRemoved(pos);
             }
         });
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                CharacterStorage.getInstance().setMainFighter(CharacterStorage.getInstance().getCharacters().get(pos));
 
             }
         });

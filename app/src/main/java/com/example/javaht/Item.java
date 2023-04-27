@@ -1,8 +1,10 @@
 package com.example.javaht;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Item {
+public class Item implements Serializable {
+    private static final long serialVersionUID = 2398L;
     private String name;
     private String slotType; // what kind of slot this item can be equipped into. See ItemSlot.java for more info
     private ArrayList<StatChange> effects;

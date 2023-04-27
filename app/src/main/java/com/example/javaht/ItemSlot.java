@@ -1,8 +1,10 @@
 package com.example.javaht;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ItemSlot {
+public class ItemSlot implements Serializable {
+    private static final long serialVersionUID = 2398L;
     private Item item;
     private final String slotType; // what type of item can be slotted into this slot (head, torso, hand...)
 

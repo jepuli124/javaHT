@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         graveyardButton = findViewById(R.id.GraveyardButton);
         graveStorage = Graveyard.getInstance();
         newCharacter = new Character("Chad");
+        loadCharacters();
     }
 
     public void changeLayoutToCharacterList(View view)   {
@@ -39,4 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, GraveyardActivity.class);
         startActivity(intent);
     }
+
+    public void loadCharacters(){
+        CharacterStorage.getInstance().loadCharacters(this);
+        Toast.makeText(this, "Hahmot ladattu", Toast.LENGTH_SHORT);
+    }
+
 }

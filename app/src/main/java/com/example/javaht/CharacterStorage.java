@@ -1,9 +1,19 @@
 package com.example.javaht;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class CharacterStorage {
     private ArrayList<Character> characters = new ArrayList<>();
+
+    private Character mainFighter;
+    private Character enemyFighter;
 
     private static CharacterStorage characterStorage = null;
     public CharacterStorage() {
@@ -25,9 +35,53 @@ public class CharacterStorage {
     }
 
     public void removeCharacter(int id){
+        characters.remove(id);
+    }
+
+    public void killCharacter(int id){
         Graveyard.getInstance().addCharacter(characters.get(id));
         characters.remove(id);
     }
+
+    public Character getMainFighter() {
+        return mainFighter;
+    }
+
+    public void setMainFighter(Character mainFighter) {
+        this.mainFighter = mainFighter;
+    }
+
+    public Character getEnemyFighter() {
+        return enemyFighter;
+    }
+
+    public void setEnemyFighter(Character enemyFighter) {
+        this.enemyFighter = enemyFighter;
+    }
+
+    public void saveCharacters(Context context){
+        try {
+            ObjectOutputStream OOPS = new ObjectOutputStream(context.openFileOutput("Characters.data", Context.MODE_PRIVATE));
+            OOPS.writeObject(characters);
+            OOPS.close();
+        } catch (IOException e) {
+            Toast.makeText(context, "Saving Failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void loadCharacters(Context context){
+        try {
+            ObjectInputStream OIPS = new ObjectInputStream(context.openFileInput("Characters.data"));
+            characters = (ArrayList<Character>) OIPS.readObject();
+            OIPS.close();
+        } catch(FileNotFoundException e1) {
+            Toast.makeText(context, "File not found", Toast.LENGTH_SHORT).show();
+        }catch(IOException e2) {
+            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }catch(ClassNotFoundException e3) {
+            Toast.makeText(context, "Class not found?", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 }
