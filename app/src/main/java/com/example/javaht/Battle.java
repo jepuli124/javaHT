@@ -106,20 +106,20 @@ public class Battle {
         return attackResult;
     }
 
-    public void getAiAction() {
-        // currently doesn't return anything, but might have in the future
+    public void doAiAction() {
+        ;// currently doesn't do anything
 
     }
 
-    public int checkIfBattleEnded(Character playerCharacter, Character enemyCharacter) {
+    public int checkIfBattleEnded() {
         // 0 = battle did NOT end
         // 3 = tie
         // 2 = ENEMY won
         // 1 = PLAYER won
         //-1 = something went wrong
 
-        int playerHP = playerCharacter.getStatByName("Health").getLevel();
-        int enemyHP = enemyCharacter.getStatByName("Health").getLevel();
+        int playerHP = this.playerCharacter.getStatByName("Health").getLevel();
+        int enemyHP = this.enemyCharacter.getStatByName("Health").getLevel();
         if ((playerHP > 0) && (enemyHP > 0)) {
             return 0;
         } else if ((playerHP <= 0) && (enemyHP <= 0)) {

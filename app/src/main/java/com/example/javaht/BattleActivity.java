@@ -21,30 +21,37 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    public void startBattle(View view) {
-
-        battle.endBattle(1, this);
-        endActivity(1, battle.getPlayerCharacter().getName(), battle.getPlayerCharacter().getBattlesWon());
-    }
-
     public void doQuickAttack(){
-        // same return as Battle.attack()
-        int attackResult = Battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
+        // can be called with onClick
+        Battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
+        afterPlayerAttack();
     }
 
     public void doMediumAttack(){
-        // same return as Battle.attack()
-        int attackResult = Battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
+        // can be called with onClick
+        Battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
+        afterPlayerAttack();
     }
 
     public void doHeavyAttack(){
-        // same return as Battle.attack()
-        int attackResult = Battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
+        // can be called with onClick
+        Battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
+        afterPlayerAttack();
     }
 
-    public void enemyAction(){
-        // same return as Battle.attack()
-        int attackResult = -1;
+    private void afterPlayerAttack(){
+        // should be called WHEN and ONLY when player has just made their move
+        int battleStatus = battle.checkIfBattleEnded();
+        if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
+            battle.endBattle(battleStatus, this);
+        }
+
+        battle.doAiAction();
+
+        battleStatus = battle.checkIfBattleEnded();
+        if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
+            battle.endBattle(battleStatus, this);
+        }
     }
 
     public void endActivity(int result, String name, int victories){
