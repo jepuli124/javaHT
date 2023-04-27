@@ -7,7 +7,7 @@
     android:background="#24A9BA">
 
     <TextView
-        android:id="@+id/txtCharacterNameVic2"
+        android:id="@+id/txtCharacterNameDef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="304dp"
@@ -21,15 +21,15 @@
         app:layout_constraintVertical_bias="0.333" />
 
     <TextView
-        android:id="@+id/txtCharacterVictories2"
+        android:id="@+id/txtCharacterVictoriesDef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hahmon voitot"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="@+id/txtCharacterNameVic2"
-        app:layout_constraintStart_toStartOf="@+id/txtCharacterNameVic2"
-        app:layout_constraintTop_toBottomOf="@+id/txtCharacterNameVic2"
+        app:layout_constraintEnd_toEndOf="@+id/txtCharacterNameDef"
+        app:layout_constraintStart_toStartOf="@+id/txtCharacterNameDef"
+        app:layout_constraintTop_toBottomOf="@+id/txtCharacterNameDef"
         app:layout_constraintVertical_bias="0.27" />
 
     <TextView
