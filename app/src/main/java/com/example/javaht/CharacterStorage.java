@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class CharacterStorage {
     private ArrayList<Character> characters = new ArrayList<>();
 
-    private Character mainFighter;
-    private Character enemyFighter;
+    private Character mainFighter = null;
+    private Character enemyFighter = null;
 
     private static CharacterStorage characterStorage = null;
     public CharacterStorage() {

@@ -1,5 +1,8 @@
 package com.example.javaht;
 
+import android.content.Context;
+import android.widget.Toast;
+
 public class Battle {
     private Character playerCharacter, enemyCharacter;
     private Character originalPlayerCharacter, originalEnemyCharacter; // these are the original objects and should NOT be edited after setting them in a constructor
@@ -25,7 +28,7 @@ public class Battle {
         enemyCharacter.applyItems();
     }
 
-    public static int attack(Character attackingCharacter, Character defendingCharacter) {
+    public int attack(Character attackingCharacter, Character defendingCharacter) {
         // 0 = hit, but did NOT kill
         // 1 = hit and kill
         // 2 = missed
@@ -42,5 +45,24 @@ public class Battle {
         } else {
             return 1;
         }
+    }
+
+    public void endBattle(int win, Context context){
+        if(win == 1){
+            Toast.makeText(context, "Victory", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "You Died", Toast.LENGTH_SHORT).show();
+        }
+
+        CharacterStorage.getInstance().setMainFighter(null);
+        CharacterStorage.getInstance().setEnemyFighter(null);
+    }
+
+    public Character getPlayerCharacter() {
+        return playerCharacter;
+    }
+
+    public Character getEnemyCharacter() {
+        return enemyCharacter;
     }
 }
