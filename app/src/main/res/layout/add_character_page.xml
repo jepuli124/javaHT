@@ -51,6 +51,7 @@
         android:text="Anna hahmolle nimi"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#212427"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

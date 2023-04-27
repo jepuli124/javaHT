@@ -12,9 +12,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="60dp"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="#784421"
         android:text="Taistelun kulku"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +32,7 @@
         android:gravity="center|center"
         android:text="TAISTELUKENTTÄ"
         android:textAllCaps="true"
+        android:textColor="#212427"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
@@ -37,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/StartFightButton"
@@ -76,5 +79,73 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/crusader_154623_1280" />
+
+    <TextView
+        android:id="@+id/textViewMainCharacterName"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Nimi"
+        android:textAlignment="center"
+        android:textColor="#212427"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
+        app:layout_constraintEnd_toStartOf="@+id/textViewEnemyName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewEnemyName"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Nimi"
+        android:textAlignment="center"
+        android:textColor="#212427"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/BatlefieldBackBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/StartFightButton"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBatlefield"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
+
+    <TextView
+        android:id="@+id/textViewMainCharacterLevel"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:hint="Taso"
+        android:textAlignment="center"
+        android:textColor="#212427"
+        app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainCharacterName" />
+
+    <TextView
+        android:id="@+id/textViewEnemyLevel"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:hint="Taso"
+        android:textAlignment="center"
+        android:textColor="#212427"
+        app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewMainCharacterLevel"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEnemyName"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

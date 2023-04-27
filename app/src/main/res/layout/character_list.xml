@@ -38,6 +38,7 @@
         android:text="Valitse hahmo"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#212427"
         app:layout_constraintBottom_toTopOf="@+id/CharacterRecyclerView"
         app:layout_constraintEnd_toStartOf="@+id/AddCharacterButton"
         app:layout_constraintHorizontal_bias="0.825"

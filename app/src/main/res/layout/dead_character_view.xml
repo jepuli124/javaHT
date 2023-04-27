@@ -26,7 +26,10 @@
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:gravity="clip_horizontal"
-            android:text="Nimi" />
+            android:text="Nimi"
+            android:textColor="#212427"
+            android:textStyle="bold"
+            android:textSize="11pt"/>
 
         <TextView
             android:id="@+id/textViewLevelDead"
@@ -34,7 +37,9 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:gravity="clip_horizontal"
-            android:text="Taso" />
+            android:text="Taso"
+            android:textColor="#212427"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -55,7 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Määrä"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#212427"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

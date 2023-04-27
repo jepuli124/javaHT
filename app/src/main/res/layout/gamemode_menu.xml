@@ -37,6 +37,7 @@
         android:text="Valitse pelimuoto"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#212427"
         app:layout_constraintBottom_toTopOf="@+id/BotGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
