@@ -29,17 +29,17 @@ public class BattleActivity extends AppCompatActivity {
 
     public void doQuickAttack(){
         // same return as Battle.attack()
-        int attackResult = Battle.quickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
+        int attackResult = Battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
     }
 
     public void doMediumAttack(){
         // same return as Battle.attack()
-        int attackResult = Battle.mediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
+        int attackResult = Battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
     }
 
     public void doHeavyAttack(){
         // same return as Battle.attack()
-        int attackResult = Battle.heavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
+        int attackResult = Battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
     }
 
     public void enemyAction(){

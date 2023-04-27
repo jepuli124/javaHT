@@ -18,8 +18,6 @@ public class Battle {
     private static final AttackingMove mediumAttack = new AttackingMove( 3, 80); // comparison value 240
     private static final AttackingMove heavyAttack = new AttackingMove( 4, 70); // comparison value 280
 
-
-
     public Battle(Character originalPlayerCharacter) {
         this.battleType = 0;
         this.originalPlayerCharacter = originalPlayerCharacter;
