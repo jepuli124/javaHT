@@ -12,6 +12,7 @@ public class Battle {
     // original characters are kept in case there are stat changes during the battle
     // so those changes can be applied to the non-original copies without worry
     // and there is no need for dedicated hp counters
+    private  static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
 
     public Battle(Character originalPlayerCharacter) {
         this.battleType = 0;
@@ -63,13 +64,24 @@ public class Battle {
     }
 
     private static int randomizeDamage(int calculatedDamage) {
-        final int randomness = 20;
         Random r = new Random();
-        return Math.round(calculatedDamage * (100 - ((float)randomness / 2) + r.nextInt(randomness) + 1));
+        return Math.round(calculatedDamage * (100 - ((float)Battle.damageRandomness / 2) + r.nextInt(Battle.damageRandomness) + 1));
     }
 
     private static int calculateRandomizedDamage(int attack, int defense, int attackPower) {
         return randomizeDamage(calculateNonRandomizedDamage(attack, defense, attackPower));
+    }
+
+    private static int calculateMinimumDamage(int attack, int defense, int attackPower) {
+        // used in AI decision making
+        Random r = new Random();
+        return Math.round(calculateNonRandomizedDamage(attack, defense, attackPower) * (100 - ((float)Battle.damageRandomness / 2) + 0 + 1));
+    }
+
+    private static int calculateMaximumDamage(int attack, int defense, int attackPower) {
+        // used in AI decision making
+        Random r = new Random();
+        return Math.round(calculateNonRandomizedDamage(attack, defense, attackPower) * (100 - ((float)Battle.damageRandomness / 2) + Battle.damageRandomness-1 + 1));
     }
 
     public static int quickAttack(Character attackingCharacter, Character defendingCharacter) {
@@ -88,6 +100,11 @@ public class Battle {
         // same return as Battle.attack()
         int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 4, 70); // comparison value 280
         return attackResult;
+    }
+
+    public void getAiAction() {
+        // currently doesn't return anything, but might have in the future
+
     }
 
     public int checkIfBattleEnded(Character playerCharacter, Character enemyCharacter) {
