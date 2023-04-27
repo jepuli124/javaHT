@@ -15,13 +15,13 @@
             android:name=".GraveyardActivity"
             android:exported="false" />
         <activity
+            android:name=".ChooseGameModeActivity"
+            android:exported="false" />
+        <activity
             android:name=".CharacterListActivity"
             android:exported="false" />
         <activity
             android:name=".AddCharacterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChooseGameModeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

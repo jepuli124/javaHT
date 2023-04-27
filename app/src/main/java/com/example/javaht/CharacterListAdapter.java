@@ -1,5 +1,7 @@
 package com.example.javaht;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -42,7 +44,9 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
                 CharacterStorage.getInstance().setMainFighter(CharacterStorage.getInstance().getCharacters().get(pos));
-
+                Intent intent= new Intent(view.getContext(), ChooseGameModeActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
