@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CharacterStorage {
     private ArrayList<Character> characters = new ArrayList<>();
@@ -30,17 +32,40 @@ public class CharacterStorage {
         return characters;
     }
 
+    public ArrayList<Character> getCharactersWOMainFighter(){
+        ArrayList<Character> returnable = new ArrayList<>();
+        for(Character character: characters){
+            if(!character.equals(CharacterStorage.getInstance().getMainFighter())){
+                returnable.add(character);
+            }
+        }
+        return returnable;
+    }
+
     public void addCharacter(Character character){
         characters.add(character);
+        sortById();
     }
 
     public void removeCharacter(int id){
+
         characters.remove(id);
+        sortById();
     }
 
     public void killCharacter(int id){
         Graveyard.getInstance().addCharacter(characters.get(id));
         characters.remove(id);
+        sortById();
+    }
+
+    public void sortById(){
+        Collections.sort(characters, new Comparator<Character>() {
+            @Override
+            public int compare(Character character, Character character2) {
+                return character.getId() - character2.getId();
+            }
+        });
     }
 
     public Character getMainFighter() {
@@ -55,13 +80,20 @@ public class CharacterStorage {
         return enemyFighter;
     }
 
-    public void setFighter(Character character){
+    public int setFighter(Character character){
         if (mode == 0){
             setMainFighter(character);
+            return 0;
         }
         else if (mode == 1){
-            setEnemyFighter(character);
+            if (!CharacterStorage.getInstance().getMainFighter().equals(character)){
+                setEnemyFighter(character);
+                return 0;
+            } else{
+                return 1;
+            }
         }
+        return 2;
     }
 
     public void setEnemyFighter(Character enemyFighter) {

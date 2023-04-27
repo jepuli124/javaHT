@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHolder> {
     private Context context;
@@ -43,24 +46,29 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-                CharacterStorage.getInstance().setFighter(CharacterStorage.getInstance().getCharacters().get(pos));
-                if(CharacterStorage.getInstance().getMode() == 0){
-                    CharacterStorage.getInstance().removeCharacter(pos);
+                if(CharacterStorage.getInstance().getMode() == 1){
+                    if(CharacterStorage.getInstance().setFighter(CharacterStorage.getInstance().getCharacters().get(pos)) != 1){
+                        CharacterStorage.getInstance().setMode(0);  // mode keeps track for if player fights against other user created character
+                        Intent intent = new Intent(view.getContext(), BattleActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+
+                } else {
+                    CharacterStorage.getInstance().setFighter(CharacterStorage.getInstance().getCharacters().get(pos));
                     Intent intent = new Intent(view.getContext(), ChooseGameModeActivity.class);
                     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                } else{
-                    CharacterStorage.getInstance().setMode(0);
-                    Intent intent = new Intent(view.getContext(), BattleActivity.class);
-                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
                 }
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return CharacterStorage.getInstance().getCharacters().size();
+        ArrayList<Character> characters = new ArrayList<>();
+        characters = CharacterStorage.getInstance().getCharacters();
+        return characters.size();
     }
 }

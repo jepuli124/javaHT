@@ -13,6 +13,8 @@ public class Character implements Serializable {
     private ArrayList<ItemSlot> items;
     private int level;
     private int xp;
+
+    private int id;
     private int battlesWon;
     private final static int startingLevel = 10;
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
@@ -29,6 +31,7 @@ public class Character implements Serializable {
         this.level = startingLevel;
         this.xp = 0;
         this.battlesWon = 0;
+        this.id = CharacterStorage.getInstance().getCharacters().size() ;
     }
 
     public Character(int level) {
@@ -117,6 +120,10 @@ public class Character implements Serializable {
     public int getRequiredXp() {
         // you can change this formula to one that makes more sense
         return(this.getLevel() * 10);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

@@ -49,12 +49,9 @@ public class Battle {
 
     public void endBattle(int win, Context context){
         if(win == 1){
-            Toast.makeText(context, "Victory", Toast.LENGTH_SHORT).show();
             originalPlayerCharacter.addToBattlesWon();
-            CharacterStorage.getInstance().addCharacter(originalPlayerCharacter);
         } else {
-            Graveyard.getInstance().addCharacter(originalPlayerCharacter);
-            Toast.makeText(context, "You Died", Toast.LENGTH_SHORT).show();
+            CharacterStorage.getInstance().killCharacter(CharacterStorage.getInstance().getCharacters().indexOf(originalPlayerCharacter));
         }
 
         CharacterStorage.getInstance().setMainFighter(null);
