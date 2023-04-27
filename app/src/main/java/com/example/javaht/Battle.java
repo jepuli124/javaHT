@@ -72,8 +72,6 @@ public class Battle {
         return randomizeDamage(calculateNonRandomizedDamage(attack, defense, attackPower));
     }
 
-    // public int generateAiMove() {}
-
     public int checkIfBattleEnded(Character playerCharacter, Character enemyCharacter) {
         // 0 = battle did NOT end
         // 3 = tie
