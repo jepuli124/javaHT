@@ -43,6 +43,11 @@ public class CharacterStorage {
         characters.remove(id);
     }
 
+    public void killCharacter(Character characterToRemove){
+        Graveyard.getInstance().addCharacter(characterToRemove);
+        characters.remove(characterToRemove);
+    }
+
     public Character getMainFighter() {
         return mainFighter;
     }
