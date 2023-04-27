@@ -21,26 +21,37 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
+    public void startBattle(View view) {
 
-    public void attack(View view){
-        if(battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter()) == 1){
-            String name = CharacterStorage.getInstance().getMainFighter().getName();
-            int victories = CharacterStorage.getInstance().getMainFighter().getBattlesWon() + 1;
-            battle.endBattle(1, this);
-            endActivity(1, name, victories);
-        }
+
+
+        battle.endBattle(1, this);
+        endActivity(1, battle.getPlayerCharacter().getName(), battle.getPlayerCharacter().getBattlesWon());
     }
 
-    public void enemyAction(){
-        if(battle.attack(battle.getEnemyCharacter(), battle.getPlayerCharacter()) == 1){
-            String name = CharacterStorage.getInstance().getMainFighter().getName();
-            int victories = CharacterStorage.getInstance().getMainFighter().getBattlesWon();
-            battle.endBattle(0, this);
-            endActivity(0, name, victories);
-        }
+    public int quickAttack(){
+        // same return as Battle.attack()
+        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 2, 100); // comparison value 200
+        return attackResult;
     }
 
+    public int mediumAttack(){
+        // same return as Battle.attack()
+        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 3, 80); // comparison value 240
+        return attackResult;
+    }
 
+    public int heavyAttack(){
+        // same return as Battle.attack()
+        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 4, 70); // comparison value 280
+        return attackResult;
+    }
+
+    public int enemyAction(){
+        // same return as Battle.attack()
+        int attackResult = 0;
+        return attackResult;
+    }
 
     public void endActivity(int result, String name, int victories){
         Intent intent = new Intent(BattleActivity.this, CharacterListActivity.class);
