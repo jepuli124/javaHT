@@ -41,16 +41,19 @@ public class BattleActivity extends AppCompatActivity {
 
     private void afterPlayerAttack(){
         // should be called WHEN and ONLY when player has just made their move
-        int battleStatus = battle.checkIfBattleEnded();
-        if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
-            battle.endBattle(battleStatus, this);
+        int battleStatusPreAi = battle.checkIfBattleEnded();
+        if (battleStatusPreAi == 1 ||battleStatusPreAi == 2 || battleStatusPreAi == 3) {
+            battle.endBattle(battleStatusPreAi, this);
+            endActivity(battleStatusPreAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
         }
 
-        battle.doAiAction();
-
-        battleStatus = battle.checkIfBattleEnded();
-        if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
-            battle.endBattle(battleStatus, this);
+        if (battleStatusPreAi == 0) {
+            battle.doAiAction();
+            int battleStatusPostAi = battle.checkIfBattleEnded();
+            if (battleStatusPostAi == 1 ||battleStatusPostAi == 2 || battleStatusPostAi == 3) {
+                battle.endBattle(battleStatusPostAi, this);
+                endActivity(battleStatusPostAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
+            }
         }
     }
 

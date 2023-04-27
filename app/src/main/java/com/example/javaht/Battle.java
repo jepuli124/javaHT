@@ -170,4 +170,12 @@ public class Battle {
     public Character getEnemyCharacter() {
         return enemyCharacter;
     }
+
+    public String getOriginalPlayerCharacterName() {
+        return this.originalPlayerCharacter.getName();
+    }
+
+    public int getOriginalPlayerCharacterVictories() {
+        return this.originalPlayerCharacter.getBattlesWon();
+    }
 }
