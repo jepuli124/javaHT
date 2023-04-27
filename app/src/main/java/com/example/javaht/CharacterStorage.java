@@ -16,7 +16,7 @@ public class CharacterStorage {
     private Character enemyFighter = null;
 
     private static CharacterStorage characterStorage = null;
-    public CharacterStorage() {
+    private CharacterStorage() {
     }
 
     public static CharacterStorage getInstance(){
@@ -41,11 +41,6 @@ public class CharacterStorage {
     public void killCharacter(int id){
         Graveyard.getInstance().addCharacter(characters.get(id));
         characters.remove(id);
-    }
-
-    public void killCharacter(Character characterToRemove){
-        Graveyard.getInstance().addCharacter(characterToRemove);
-        characters.remove(characterToRemove);
     }
 
     public Character getMainFighter() {
