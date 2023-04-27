@@ -3,6 +3,7 @@ package com.example.javaht;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Random;
 
 public class Battle {
@@ -12,7 +13,12 @@ public class Battle {
     // original characters are kept in case there are stat changes during the battle
     // so those changes can be applied to the non-original copies without worry
     // and there is no need for dedicated hp counters
-    private  static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
+    private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
+    private static final AttackingMove quickAttack = new AttackingMove( 2, 100); // comparison value 200
+    private static final AttackingMove mediumAttack = new AttackingMove( 3, 80); // comparison value 240
+    private static final AttackingMove heavyAttack = new AttackingMove( 4, 70); // comparison value 280
+
+
 
     public Battle(Character originalPlayerCharacter) {
         this.battleType = 0;
@@ -84,21 +90,21 @@ public class Battle {
         return Math.round(calculateNonRandomizedDamage(attack, defense, attackPower) * (100 - ((float)Battle.damageRandomness / 2) + Battle.damageRandomness-1 + 1));
     }
 
-    public static int quickAttack(Character attackingCharacter, Character defendingCharacter) {
+    public static int doQuickAttack(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
-        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 2, 100); // comparison value 200
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, quickAttack.getAttackPower(), quickAttack.getHitChance());
         return attackResult;
     }
 
-    public static int mediumAttack(Character attackingCharacter, Character defendingCharacter) {
+    public static int doMediumAttack(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
-        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 3, 80); // comparison value 240
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, mediumAttack.getAttackPower(), mediumAttack.getHitChance());
         return attackResult;
     }
 
-    public static int heavyAttack(Character attackingCharacter, Character defendingCharacter) {
+    public static int doHeavyAttack(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
-        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 4, 70); // comparison value 280
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, heavyAttack.getAttackPower(), heavyAttack.getHitChance());
         return attackResult;
     }
 
@@ -131,8 +137,11 @@ public class Battle {
     public void endBattle(int win, Context context){
         if(win == 1){
             Toast.makeText(context, "Victory", Toast.LENGTH_SHORT).show();
-            originalPlayerCharacter.addToBattlesWon();
-            originalPlayerCharacter.changeXp(originalEnemyCharacter.getGainedXp(originalPlayerCharacter));
+            if (this.getBattleType() == 0) {
+                // only gain experience if battle type is against generated enemy
+                originalPlayerCharacter.addToBattlesWon();
+                originalPlayerCharacter.changeXp(originalEnemyCharacter.getGainedXp(originalPlayerCharacter));
+            }
         } else if (win == 2) {
             Toast.makeText(context, "You perished", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
