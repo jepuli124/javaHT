@@ -18,6 +18,9 @@
             android:name=".ChooseGameModeActivity"
             android:exported="false" />
         <activity
+            android:name=".BattleActivity"
+            android:exported="false" />
+        <activity
             android:name=".CharacterListActivity"
             android:exported="false" />
         <activity

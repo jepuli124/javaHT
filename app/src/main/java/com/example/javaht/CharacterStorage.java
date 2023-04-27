@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class CharacterStorage {
     private ArrayList<Character> characters = new ArrayList<>();
-
+    private int mode = 0;
     private Character mainFighter = null;
     private Character enemyFighter = null;
 
@@ -55,6 +55,15 @@ public class CharacterStorage {
         return enemyFighter;
     }
 
+    public void setFighter(Character character){
+        if (mode == 0){
+            setMainFighter(character);
+        }
+        else if (mode == 1){
+            setEnemyFighter(character);
+        }
+    }
+
     public void setEnemyFighter(Character enemyFighter) {
         this.enemyFighter = enemyFighter;
     }
@@ -82,6 +91,13 @@ public class CharacterStorage {
         }
     }
 
+    public void setMode(int mode){
+        this.mode = mode;
+    }
+
+    public int getMode(){
+        return mode;
+    }
 
 
 }

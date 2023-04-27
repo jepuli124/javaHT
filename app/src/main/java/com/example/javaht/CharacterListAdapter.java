@@ -43,10 +43,18 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-                CharacterStorage.getInstance().setMainFighter(CharacterStorage.getInstance().getCharacters().get(pos));
-                Intent intent= new Intent(view.getContext(), ChooseGameModeActivity.class);
-                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                CharacterStorage.getInstance().setFighter(CharacterStorage.getInstance().getCharacters().get(pos));
+                if(CharacterStorage.getInstance().getMode() == 0){
+                    CharacterStorage.getInstance().removeCharacter(pos);
+                    Intent intent = new Intent(view.getContext(), ChooseGameModeActivity.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                } else{
+                    CharacterStorage.getInstance().setMode(0);
+                    Intent intent = new Intent(view.getContext(), BattleActivity.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
             }
         });
     }

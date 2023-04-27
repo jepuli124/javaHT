@@ -160,11 +160,11 @@ public class Character implements Serializable {
         level++;
     }
 
-    private void addToBattlesWon() {
+    public void addToBattlesWon() {
         battlesWon++;
     }
 
-    private void addToBattlesWon(int amount) {
+    public void addToBattlesWon(int amount) {
         if (battlesWon + amount < 1) {
             battlesWon = 0;
         } else {

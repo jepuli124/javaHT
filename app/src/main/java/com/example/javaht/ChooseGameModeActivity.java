@@ -17,19 +17,18 @@ public class ChooseGameModeActivity extends AppCompatActivity {
     }
 
     public void changeLayoutToSurvial(View view)   {
-        Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
+        Intent intent = new Intent(ChooseGameModeActivity.this, BattleActivity.class);
         startActivity(intent);
     }
 
     public void changeLayoutToTrain(View view)   {
-        //Tällä voi testata listan toimivuus:
-        //graveStorage.getCharacters().add(newCharacter);
-
+        CharacterStorage.getInstance().setMode(1);
         Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
         startActivity(intent);
     }
 
     public void back(View view){
+        CharacterStorage.getInstance().addCharacter(CharacterStorage.getInstance().getMainFighter());
         Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
         startActivity(intent);
     }
