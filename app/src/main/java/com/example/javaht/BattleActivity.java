@@ -25,18 +25,24 @@ public class BattleActivity extends AppCompatActivity {
     public void attack(View view){
         if(battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter()) == 1){
             battle.endBattle(1, this);
+            endActivity(1);
         }
     }
 
     public void enemyAction(){
         if(battle.attack(battle.getEnemyCharacter(), battle.getPlayerCharacter()) == 1){
             battle.endBattle(0, this);
+            endActivity(0);
         }
     }
 
 
-    public void back(View view){
+
+    public void endActivity(int result){
         Intent intent = new Intent(BattleActivity.this, CharacterListActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("result", result);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }
