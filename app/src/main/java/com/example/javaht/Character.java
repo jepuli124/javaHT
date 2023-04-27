@@ -69,7 +69,7 @@ public class Character implements Serializable {
     }
 
     public Character(Character original) {
-        // essentially copies given character
+        // essentially copies given character, except for id
         this.name = original.getName();
         this.stats = new ArrayList<Stat>(original.getStats());
         this.items = new ArrayList<ItemSlot>(original.getItems());
