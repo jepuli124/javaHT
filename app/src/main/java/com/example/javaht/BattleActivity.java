@@ -23,34 +23,28 @@ public class BattleActivity extends AppCompatActivity {
 
     public void startBattle(View view) {
 
-
-
         battle.endBattle(1, this);
         endActivity(1, battle.getPlayerCharacter().getName(), battle.getPlayerCharacter().getBattlesWon());
     }
 
-    public int quickAttack(){
+    public void doQuickAttack(){
         // same return as Battle.attack()
-        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 2, 100); // comparison value 200
-        return attackResult;
+        int attackResult = Battle.quickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
     }
 
-    public int mediumAttack(){
+    public void doMediumAttack(){
         // same return as Battle.attack()
-        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 3, 80); // comparison value 240
-        return attackResult;
+        int attackResult = Battle.mediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
     }
 
-    public int heavyAttack(){
+    public void doHeavyAttack(){
         // same return as Battle.attack()
-        int attackResult = battle.attack(battle.getPlayerCharacter(), battle.getEnemyCharacter(), 4, 70); // comparison value 280
-        return attackResult;
+        int attackResult = Battle.heavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
     }
 
-    public int enemyAction(){
+    public void enemyAction(){
         // same return as Battle.attack()
-        int attackResult = 0;
-        return attackResult;
+        int attackResult = -1;
     }
 
     public void endActivity(int result, String name, int victories){

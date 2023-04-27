@@ -33,7 +33,7 @@ public class Battle {
         enemyCharacter.applyItems();
     }
 
-    public int attack(Character attackingCharacter, Character defendingCharacter, int attackPower, int hitChance) {
+    public static int attack(Character attackingCharacter, Character defendingCharacter, int attackPower, int hitChance) {
         // -1 = missed
         // otherwise return damage dealt
         if (checkIfHit(hitChance)) {
@@ -70,6 +70,24 @@ public class Battle {
 
     private static int calculateRandomizedDamage(int attack, int defense, int attackPower) {
         return randomizeDamage(calculateNonRandomizedDamage(attack, defense, attackPower));
+    }
+
+    public static int quickAttack(Character attackingCharacter, Character defendingCharacter) {
+        // same return as Battle.attack()
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 2, 100); // comparison value 200
+        return attackResult;
+    }
+
+    public static int mediumAttack(Character attackingCharacter, Character defendingCharacter) {
+        // same return as Battle.attack()
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 3, 80); // comparison value 240
+        return attackResult;
+    }
+
+    public static int heavyAttack(Character attackingCharacter, Character defendingCharacter) {
+        // same return as Battle.attack()
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, 4, 70); // comparison value 280
+        return attackResult;
     }
 
     public int checkIfBattleEnded(Character playerCharacter, Character enemyCharacter) {
