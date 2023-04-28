@@ -26,7 +26,7 @@ public class AfterBattleActivity extends AppCompatActivity {
             characterVictories = findViewById(R.id.txtCharacterVictoriesDef);
         }
         characterName.setText(bundle.getString("name"));
-        characterVictories.setText(Integer.toString(bundle.getInt("victories")));
+        characterVictories.setText("Voitot: " + Integer.toString(bundle.getInt("victories")));
     }
 
 
