@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class BattleActivity extends AppCompatActivity {
 
     private Battle battle;
@@ -30,9 +32,21 @@ public class BattleActivity extends AppCompatActivity {
         enemyImg = findViewById(R.id.imageViewEnemy);
 
         if (CharacterStorage.getInstance().getEnemyFighter() == null) {
-            battle = new Battle(CharacterStorage.getInstance().getMainFighter());
+            try {
+                battle = new Battle(CharacterStorage.getInstance().getMainFighter());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            battle = new Battle(CharacterStorage.getInstance().getMainFighter(), CharacterStorage.getInstance().getEnemyFighter());
+            try {
+                battle = new Battle(CharacterStorage.getInstance().getMainFighter(), CharacterStorage.getInstance().getEnemyFighter());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         textViewMainCharacterName.setText(battle.getPlayerCharacter().getName());
         textViewMainCharacterLevel.setText(String.valueOf(battle.getPlayerCharacter().getLevel()));
