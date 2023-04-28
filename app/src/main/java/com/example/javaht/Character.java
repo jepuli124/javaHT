@@ -24,11 +24,11 @@ public class Character implements Serializable {
     public Character(String name) {
         this.name = name;
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 1));
+        this.stats.add(new Stat("Health", 2));
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         int i = this.stats.size();
-        while (i < level) {
+        while (i < startingLevel) {
             this.addToRandomStat();
             i++;
         }
@@ -52,7 +52,7 @@ public class Character implements Serializable {
             i++;
         }
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 1));
+        this.stats.add(new Stat("Health", 2));
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         i = this.stats.size();

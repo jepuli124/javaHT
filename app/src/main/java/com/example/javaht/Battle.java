@@ -15,12 +15,12 @@ public class Battle {
     // original characters are kept in case there are stat changes during the battle
     // so those changes can be applied to the non-original copies without worry
     // and there is no need for dedicated hp counters
-    private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
+    private static final int damageRandomness = 10; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
     private static final int enemyLevelRandomness = 5; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
     // for enemyLevelRandomness, rounding is always done down e. g. 2.5 -> 2
-    private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 2, 100); // comparison value 200
-    private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 3, 80); // comparison value 240
-    private static final AttackingMove heavyAttack = new AttackingMove( "Heavy attack", 4, 70); // comparison value 280
+    private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 2, 100);
+    private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 3, 80);
+    private static final AttackingMove heavyAttack = new AttackingMove( "Heavy attack", 4, 70);
     private static final List<AttackingMove> attackingMoves = new ArrayList<AttackingMove>(List.of(Battle.quickAttack, Battle.mediumAttack, Battle.heavyAttack));
     // list is used by Ai for easy access
 
@@ -57,7 +57,7 @@ public class Battle {
                 damageDealt = 1;
             }
             defendingCharacter.getStatByName("Health").changeLevel(-damageDealt);
-            this.battleText += attackingCharacter.getName() + " teki " + String.valueOf(damageDealt) + " vahinkoa\n";
+             this.battleText += attackingCharacter.getName() + " teki " + String.valueOf(damageDealt) + " vahinkoa\n";
             return damageDealt;
         } else {
             this.battleText += attackingCharacter.getName() + " ei osunut\n";
@@ -71,7 +71,7 @@ public class Battle {
     }
 
     private static int calculateNonRandomizedDamage(int attack, int defense, int attackPower) {
-        if (defense > 0) {
+        if (defense > 1) {
             return Math.round((
                     (float) attack)
                     * ((float) attackPower)
@@ -87,7 +87,7 @@ public class Battle {
 
     private static int randomizeDamage(int calculatedDamage) {
         Random r = new Random();
-        return Math.round(calculatedDamage * (100 - ((float)Battle.damageRandomness / 2) + r.nextInt(Battle.damageRandomness) + 1));
+        return Math.round(calculatedDamage * (100 - ((float)Battle.damageRandomness / 2) + r.nextInt(Battle.damageRandomness)) /100);
     }
 
     private static int calculateRandomizedDamage(int attack, int defense, int attackPower) {
@@ -133,7 +133,6 @@ public class Battle {
 
     public int doAiAction(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
-        // currently doesn't support status moves and is most likely quite bad
         for (AttackingMove am : Battle.attackingMoves) {
             if (am.getHitChance() == 100
                     && Battle.calculateMinimumDamage(am.getAttackPower(), defendingCharacter.getStatByName("Defense").getLevel(),
