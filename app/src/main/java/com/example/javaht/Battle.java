@@ -63,11 +63,19 @@ public class Battle {
     }
 
     private static int calculateNonRandomizedDamage(int attack, int defense, int attackPower) {
-        return Math.round((
-                (float) attack)
-                * ((float) attackPower)
-                / ((float) (defense)
-                ));
+        if (defense > 0) {
+            return Math.round((
+                    (float) attack)
+                    * ((float) attackPower)
+                    / ((float) (defense)
+            ));
+        } else {
+            return Math.round((
+                    (float) attack)
+                    * ((float) attackPower)
+            );
+        }
+
     }
 
     private static int randomizeDamage(int calculatedDamage) {
