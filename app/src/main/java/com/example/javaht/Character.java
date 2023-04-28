@@ -137,7 +137,7 @@ public class Character implements Serializable {
         Random r = new Random();
         int randInt = r.nextInt(statIndexes.size());
         if (this.getStats().get(statIndexes.get(randInt)).getName().equals("Health")){
-            this.getStats().get(statIndexes.get(randInt)).changeLevel(10);
+            this.getStats().get(statIndexes.get(randInt)).changeLevel(10 + r.nextInt(2));
         } else {
             this.getStats().get(statIndexes.get(randInt)).changeLevel(1);
         }
