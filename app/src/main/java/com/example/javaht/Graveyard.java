@@ -20,12 +20,15 @@ public class Graveyard {
          return characters;
      }
 
-     public void addCharacter(Character character){
+     public void addCharacter(Character character, Context context){
          characters.add(character);
+         saveDeadCharacters(context);
      }
 
-    public void removeCharacter(int id){
-        characters.remove(id);
+    public void removeCharacter(int id, Context context){
+         characters.remove(id);
+         saveDeadCharacters(context);
+
     }
 
     public static Graveyard getInstance(){
@@ -48,8 +51,6 @@ public class Graveyard {
             ObjectInputStream OIPS = new ObjectInputStream(context.openFileInput("DeadCharacters.data"));
             characters = (ArrayList<Character>) OIPS.readObject();
             OIPS.close();
-        } catch(FileNotFoundException e1) {
-            Toast.makeText(context, "File not found", Toast.LENGTH_SHORT).show();
         }catch(IOException e2) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
         }catch(ClassNotFoundException e3) {

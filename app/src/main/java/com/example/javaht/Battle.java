@@ -15,12 +15,12 @@ public class Battle {
     // original characters are kept in case there are stat changes during the battle
     // so those changes can be applied to the non-original copies without worry
     // and there is no need for dedicated hp counters
-    private static final int damageRandomness = 10; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
+    private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
     private static final int enemyLevelRandomness = 5; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
     // for enemyLevelRandomness, rounding is always done down e. g. 2.5 -> 2
-    private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 2, 100);
-    private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 3, 80);
-    private static final AttackingMove heavyAttack = new AttackingMove( "Heavy attack", 4, 70);
+    private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 20, 100);
+    private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 30, 80);
+    private static final AttackingMove heavyAttack = new AttackingMove( "Heavy attack", 40, 70);
     private static final List<AttackingMove> attackingMoves = new ArrayList<AttackingMove>(List.of(Battle.quickAttack, Battle.mediumAttack, Battle.heavyAttack));
     // list is used by Ai for easy access
 
@@ -58,6 +58,7 @@ public class Battle {
             }
             defendingCharacter.getStatByName("Health").changeLevel(-damageDealt);
              this.battleText += attackingCharacter.getName() + " teki " + String.valueOf(damageDealt) + " vahinkoa\n";
+             this.battleText += defendingCharacter.getName() + " on " + defendingCharacter.getStatByName("Health").getLevel() + "Hp\n";
             return damageDealt;
         } else {
             this.battleText += attackingCharacter.getName() + " ei osunut\n";
@@ -205,7 +206,7 @@ public class Battle {
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
-                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
+                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter), context);
             }
         } else if (win == 3) {
             this.battleText += " molemmat kaatuivat\n";
@@ -213,7 +214,7 @@ public class Battle {
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
-                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
+                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter), context);
             }
         }
     }
