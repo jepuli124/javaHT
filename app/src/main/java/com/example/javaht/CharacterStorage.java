@@ -42,18 +42,18 @@ public class CharacterStorage {
         return returnable;
     }
 
-    public void addCharacter(Character character){
+    public void addCharacter(Character character, Context context){
         characters.add(character);
         sortById();
     }
 
-    public void removeCharacter(int id){
+    public void removeCharacter(int id, Context context){
 
         characters.remove(id);
         sortById();
     }
 
-    public void killCharacter(int id){
+    public void killCharacter(int id, Context context){
         Graveyard.getInstance().addCharacter(characters.get(id));
         characters.remove(id);
         sortById();

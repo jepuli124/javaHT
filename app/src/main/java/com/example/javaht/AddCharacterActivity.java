@@ -36,7 +36,7 @@ public class AddCharacterActivity extends AppCompatActivity {
             return;
         }
         Character character = new Character(characterName.getText().toString());
-        CharacterStorage.getInstance().addCharacter(character);
+        CharacterStorage.getInstance().addCharacter(character, view.getContext());
         characterName.setText("");
         Toast.makeText(this, "Character Added", Toast.LENGTH_SHORT).show();
         CharacterStorage.getInstance().saveCharacters(view.getContext());

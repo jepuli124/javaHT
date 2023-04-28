@@ -211,7 +211,7 @@ public class Battle {
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
-                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
+                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter), context);
             }
         } else if (win == 3) {
             this.battleText += " molemmat kaatuivat\n";
@@ -219,7 +219,7 @@ public class Battle {
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
-                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
+                s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter), context);
             }
         }
         CharacterStorage.getInstance().setMainFighter(null);

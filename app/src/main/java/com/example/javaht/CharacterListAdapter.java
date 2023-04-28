@@ -37,7 +37,7 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-                CharacterStorage.getInstance().removeCharacter(pos);
+                CharacterStorage.getInstance().removeCharacter(pos, view.getContext());
                 CharacterStorage.getInstance().saveCharacters(view.getContext());
                 notifyItemRemoved(pos);
             }
