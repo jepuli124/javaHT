@@ -16,11 +16,19 @@ public class BattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fight_page);
         TextView battleTextView = findViewById(R.id.textViewBatlefield);
+        TextView textViewMainCharacterName = findViewById(R.id.textViewMainCharacterName);
+        TextView textViewMainCharacterLevel = findViewById(R.id.textViewMainCharacterLevel);
+        TextView textViewEnemyName = findViewById(R.id.textViewEnemyName);
+        TextView textViewEnemyLevel = findViewById(R.id.textViewEnemyLevel);
         if (CharacterStorage.getInstance().getEnemyFighter() == null) {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter());
         } else {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter(), CharacterStorage.getInstance().getEnemyFighter());
         }
+        textViewMainCharacterName.setText(battle.getPlayerCharacter().getName());
+        textViewMainCharacterLevel.setText(String.valueOf(battle.getPlayerCharacter().getLevel()));
+        textViewEnemyName.setText(battle.getEnemyCharacter().getName());
+        textViewEnemyLevel.setText(String.valueOf(battle.getEnemyCharacter().getLevel()));
         battleTextView.setText(battle.getBattleText());
     }
 
