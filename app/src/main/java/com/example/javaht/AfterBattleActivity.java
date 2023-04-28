@@ -26,7 +26,7 @@ public class AfterBattleActivity extends AppCompatActivity {
             characterVictories = findViewById(R.id.txtCharacterVictoriesDef);
         }
         characterName.setText(bundle.getString("name"));
-        characterVictories.setText(bundle.getInt("victories"));
+        characterVictories.setText(Integer.toString(bundle.getInt("victories")));
     }
 
 
@@ -34,6 +34,8 @@ public class AfterBattleActivity extends AppCompatActivity {
 
     public void backToCharacterListActivity(View view){
         Intent intent = new Intent(AfterBattleActivity.this, CharacterListActivity.class);
+        CharacterStorage.getInstance().setMainFighter(null);
+        CharacterStorage.getInstance().setEnemyFighter(null);
         startActivity(intent);
     }
 

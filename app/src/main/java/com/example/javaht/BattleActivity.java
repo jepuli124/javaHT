@@ -91,7 +91,7 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     public void endActivity(int result, String name, int victories){
-        Intent intent = new Intent(BattleActivity.this, CharacterListActivity.class);
+        Intent intent = new Intent(BattleActivity.this, AfterBattleActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("result", result);
         bundle.putInt("victories", victories);

@@ -216,8 +216,6 @@ public class Battle {
                 s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
             }
         }
-        CharacterStorage.getInstance().setMainFighter(null);
-        CharacterStorage.getInstance().setEnemyFighter(null);
     }
 
     public int getBattleType() {

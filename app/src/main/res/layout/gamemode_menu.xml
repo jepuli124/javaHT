@@ -11,7 +11,7 @@
         android:id="@+id/BotGameButton"
         android:layout_width="190dp"
         android:layout_height="100dp"
-        android:onClick="changeLayoutToSurvial"
+        android:onClick="changeLayoutToSurvival"
         android:text="Pelaa botteja vastaan"
         app:layout_constraintBottom_toTopOf="@+id/CharacterGameButton"
         app:layout_constraintEnd_toEndOf="parent"
