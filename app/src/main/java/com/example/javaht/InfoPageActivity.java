@@ -21,17 +21,7 @@ public class InfoPageActivity extends AppCompatActivity {
         info = findViewById(R.id.infoText);
         backBtn = findViewById(R.id.infoPageBackButton);
 
-        info.setText("       - Pelin tarkoituksena on kehittää omien hahmojen tasoa taistelemalla pelin luomia botteja vastaan. \n" +
-                "\n" +
-                "- Hahmoja voi luoda \"lisää hahmo\"-napista, joka kysyy uuden hahmon nimen. \n" +
-                "\n" +
-                "- Hahmoilla voi taistella joko botteja tai omia hahmoja vastaan. \n" +
-                "\n" +
-                "- Voitetun taistelun jälkeen hahmoa voi vaihtaa tai jatkaa samalla. \n" +
-                "\n" +
-                "- Kuolleet hahmot löytyvät hautausmaalta. \n" +
-                "\n" +
-                "Tekijät: Lauri, Konsta ja Tuomas");
+        info.setText("\n   HP: \n\nATTACK: \n\nITEMS: \n\nLEVEL: \n\nWINS: ");
 
     }
 
