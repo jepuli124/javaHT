@@ -28,7 +28,7 @@ public class ChooseGameModeActivity extends AppCompatActivity {
     }
 
     public void back(View view){
-        CharacterStorage.getInstance().addCharacter(CharacterStorage.getInstance().getMainFighter(), view.getContext());
+        CharacterStorage.getInstance().setMode(0);
         Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
         startActivity(intent);
     }

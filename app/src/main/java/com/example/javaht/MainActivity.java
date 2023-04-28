@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadCharacters(){
         CharacterStorage.getInstance().loadCharacters(this);
+        Graveyard.getInstance().loadDeadCharacters(this);
         Toast.makeText(this, "Hahmot ladattu", Toast.LENGTH_SHORT);
     }
 

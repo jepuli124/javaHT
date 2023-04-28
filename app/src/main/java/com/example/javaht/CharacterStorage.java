@@ -45,18 +45,21 @@ public class CharacterStorage {
     public void addCharacter(Character character, Context context){
         characters.add(character);
         sortById();
+        saveCharacters(context);
     }
 
     public void removeCharacter(int id, Context context){
 
         characters.remove(id);
         sortById();
+        saveCharacters(context);
     }
 
     public void killCharacter(int id, Context context){
-        Graveyard.getInstance().addCharacter(characters.get(id));
+        Graveyard.getInstance().addCharacter(characters.get(id), context);
         characters.remove(id);
         sortById();
+        saveCharacters(context);
     }
 
     public void sortById(){
@@ -114,8 +117,6 @@ public class CharacterStorage {
             ObjectInputStream OIPS = new ObjectInputStream(context.openFileInput("Characters.data"));
             characters = (ArrayList<Character>) OIPS.readObject();
             OIPS.close();
-        } catch(FileNotFoundException e1) {
-            Toast.makeText(context, "File not found", Toast.LENGTH_SHORT).show();
         }catch(IOException e2) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
         }catch(ClassNotFoundException e3) {
