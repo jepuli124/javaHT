@@ -197,7 +197,7 @@ public class Battle {
     }
 
     public void endBattle(int win, Context context){
-        this.battleText += "The Battle has ended ";
+        this.battleText += "Taistelu päättyi\n";
         if(win == 1){
             this.battleText += playerCharacter.getName() + " voitti\n";
             Toast.makeText(context, "Voitit", Toast.LENGTH_SHORT).show();
@@ -216,7 +216,7 @@ public class Battle {
             }
         } else if (win == 3) {
             this.battleText += " molemmat kaatuivat\n";
-            Toast.makeText(context, "Tie", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Tasapeli", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
