@@ -46,8 +46,9 @@ public class Character implements Serializable {
         // used to generate enemies
         Random r = new Random();
         int i = 0;
-        while (i <= r.nextInt(2) + 2) {
-            this.name += mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
+        this.name = mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
+        while (i < r.nextInt(3)) {
+            this.name += " " + mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
             i++;
         }
         this.stats = new ArrayList<Stat>();
