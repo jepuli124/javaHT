@@ -56,7 +56,7 @@ public class Character implements Serializable {
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         i = this.stats.size();
-        while (i < level) {
+        while (i < level+19) {
             this.addToRandomStat();
             i++;
         }
@@ -64,7 +64,7 @@ public class Character implements Serializable {
         for (i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
         }
-        this.level = startingLevel;
+        this.level = level;
         this.xp = 0;
         this.battlesWon = 0;
     }
