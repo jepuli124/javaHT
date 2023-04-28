@@ -53,6 +53,13 @@ public class BattleActivity extends AppCompatActivity {
         textViewEnemyName.setText(battle.getEnemyCharacter().getName());
         textViewEnemyLevel.setText(String.valueOf(battle.getEnemyCharacter().getLevel()));
         battleTextView.setText(battle.getBattleText());
+        // check if one of the fighters died due to effects/items reducing their health
+        int battleStatus = battle.checkIfBattleEnded();
+        if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
+            battle.endBattle(battleStatus, this);
+            battleTextView.setText(battle.getBattleText());
+            endActivity(battleStatus, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
+        }
     }
 
     public void doQuickAttack(View view){
