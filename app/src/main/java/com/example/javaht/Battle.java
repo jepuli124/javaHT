@@ -23,7 +23,6 @@ public class Battle {
     private static final List<AttackingMove> attackingMoves = new ArrayList<AttackingMove>(List.of(Battle.quickAttack, Battle.mediumAttack, Battle.heavyAttack));
     // list is used by Ai for easy access
 
-
     public Battle(Character originalPlayerCharacter) {
         Random r = new Random();
         this.battleType = 0;
@@ -128,14 +127,14 @@ public class Battle {
         return attackResult;
     }
 
-    public void doAiAction(Character attackingCharacter, Character defendingCharacter) {
+    public int doAiAction(Character attackingCharacter, Character defendingCharacter) {
+        // same return as Battle.attack()
         // currently doesn't support status moves and is most likely quite bad
         for (AttackingMove am : Battle.attackingMoves) {
             if (am.getHitChance() == 100
                     && Battle.calculateMinimumDamage(am.getAttackPower(), defendingCharacter.getStatByName("Defense").getLevel(),
                     attackingCharacter.getStatByName("Attack").getLevel()) >= defendingCharacter.getStatByName("Health").getLevel()) {
-                Battle.doSpecificAttack(am, attackingCharacter, defendingCharacter);
-                return;
+                return Battle.doSpecificAttack(am, attackingCharacter, defendingCharacter);
             }
         }
         int i, calculatedDamage, currentDamage;
@@ -164,14 +163,11 @@ public class Battle {
             }
         }
         if (highestDamageAM.equals(highestKOAM)) {
-            Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
-            return;
+            return Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
         } else if (highestDamageDealtPerAttack / defendingCharacter.getStatByName("Health").getLevel() < highestKOLikelyHood) {
-            Battle.doSpecificAttack(highestKOAM, attackingCharacter, defendingCharacter);
-            return;
+            return Battle.doSpecificAttack(highestKOAM, attackingCharacter, defendingCharacter);
         } else {
-            Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
-            return;
+            return Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
         }
     }
 
