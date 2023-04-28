@@ -196,7 +196,7 @@ public class Battle {
     }
 
     public void endBattle(int win, Context context){
-        this.battleText += "Taistelu päättyi\n";
+        this.battleText = "Taistelu päättyi\n";
         if(win == 1){
             this.battleText += playerCharacter.getName() + " voitti\n";
             Toast.makeText(context, "Voitit", Toast.LENGTH_SHORT).show();
@@ -248,5 +248,9 @@ public class Battle {
 
     public String getBattleText() {
         return battleText;
+    }
+
+    public void setBattleText(String battleText) {
+        this.battleText = battleText;
     }
 }
