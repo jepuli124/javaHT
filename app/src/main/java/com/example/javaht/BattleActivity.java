@@ -1,8 +1,12 @@
 package com.example.javaht;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedImageDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,16 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BattleActivity extends AppCompatActivity {
 
     private Battle battle;
+    private Animation animation;
+    private ImageView playerImg, enemyImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fight_page);
         TextView battleTextView = findViewById(R.id.textViewBatlefield);
-        TextView textViewMainCharacterName = findViewById(R.id.textViewMainCharacterName);
-        TextView textViewMainCharacterLevel = findViewById(R.id.textViewMainCharacterLevel);
+        TextView textViewMainCharacterName = findViewById(R.id.textViewPlayerName);
+        TextView textViewMainCharacterLevel = findViewById(R.id.textViewPlayerLevel);
         TextView textViewEnemyName = findViewById(R.id.textViewEnemyName);
         TextView textViewEnemyLevel = findViewById(R.id.textViewEnemyLevel);
+        playerImg = findViewById(R.id.imageViewPlayer);
+        enemyImg = findViewById(R.id.imageViewEnemy);
+
         if (CharacterStorage.getInstance().getEnemyFighter() == null) {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter());
         } else {
@@ -34,18 +43,24 @@ public class BattleActivity extends AppCompatActivity {
 
     public void doQuickAttack(View view){
         // can be called with onClick
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.quick_player);
+        playerImg.startAnimation(animation);
         battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
         afterPlayerAttack();
     }
 
     public void doMediumAttack(View view){
         // can be called with onClick
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.medium_player);
+        playerImg.startAnimation(animation);
         battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
         afterPlayerAttack();
     }
 
     public void doHeavyAttack(View view){
         // can be called with onClick
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.heavy_player);
+        playerImg.startAnimation(animation);
         battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
         afterPlayerAttack();
     }
