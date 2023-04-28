@@ -3,6 +3,11 @@ package com.example.javaht;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,27 +29,37 @@ public class Battle {
     private static final List<AttackingMove> attackingMoves = new ArrayList<AttackingMove>(List.of(Battle.quickAttack, Battle.mediumAttack, Battle.heavyAttack));
     // list is used by Ai for easy access
 
-    public Battle(Character originalPlayerCharacter) {
+    public Battle(Character originalPlayerCharacter) throws IOException, ClassNotFoundException {
         Random r = new Random();
         this.battleType = 0;
         this.originalPlayerCharacter = originalPlayerCharacter;
-        this.playerCharacter = new Character(originalPlayerCharacter);
+        this.playerCharacter = cloning(originalPlayerCharacter);
         this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)));
-        this.enemyCharacter = new Character(originalEnemyCharacter);
+        this.enemyCharacter = cloning(originalEnemyCharacter);
         this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
 
-    public Battle(Character originalPlayerCharacter, Character originalEnemyCharacter) {
+    public Battle(Character originalPlayerCharacter, Character originalEnemyCharacter) throws IOException, ClassNotFoundException {
         this.battleType = 1;
         this.originalPlayerCharacter = originalPlayerCharacter;
-        this.playerCharacter = new Character(originalPlayerCharacter);
         this.originalEnemyCharacter = originalEnemyCharacter;
-        this.enemyCharacter = new Character(originalEnemyCharacter);
+        this.playerCharacter = cloning(originalPlayerCharacter);
+        this.enemyCharacter = cloning(originalEnemyCharacter);
+
         this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
+    }
+
+    private Character cloning(Character character) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream outPut = new ByteArrayOutputStream(); // Writing character down to clone it
+        ObjectOutputStream out = new ObjectOutputStream(outPut);
+        out.writeObject(originalPlayerCharacter);
+        ByteArrayInputStream inPut = new ByteArrayInputStream(outPut.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(inPut);
+        return (Character) in.readObject();
     }
 
     public int attack(Character attackingCharacter, Character defendingCharacter, int attackPower, int hitChance) {
