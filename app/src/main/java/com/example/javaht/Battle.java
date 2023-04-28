@@ -31,7 +31,7 @@ public class Battle {
         this.playerCharacter = new Character(originalPlayerCharacter);
         this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)));
         this.enemyCharacter = new Character(originalEnemyCharacter);
-        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
+        this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
@@ -42,7 +42,7 @@ public class Battle {
         this.playerCharacter = new Character(originalPlayerCharacter);
         this.originalEnemyCharacter = originalEnemyCharacter;
         this.enemyCharacter = new Character(originalEnemyCharacter);
-        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
+        this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
@@ -57,10 +57,10 @@ public class Battle {
                 damageDealt = 1;
             }
             defendingCharacter.getStatByName("Health").changeLevel(-damageDealt);
-            this.battleText += attackingCharacter.getName() + " hit " + defendingCharacter.getName() + " for " + String.valueOf(damageDealt) + "\n";
+            this.battleText += attackingCharacter.getName() + " teki " + String.valueOf(damageDealt) + " vahinkoa\n";
             return damageDealt;
         } else {
-            this.battleText += attackingCharacter.getName() + " missed\n";
+            this.battleText += attackingCharacter.getName() + " ei osunut\n";
             return -1;
         }
     }
@@ -199,24 +199,24 @@ public class Battle {
     public void endBattle(int win, Context context){
         this.battleText += "The Battle has ended ";
         if(win == 1){
-            this.battleText += playerCharacter.getName() + " was victorious\n";
-            Toast.makeText(context, "Victory", Toast.LENGTH_SHORT).show();
+            this.battleText += playerCharacter.getName() + " voitti\n";
+            Toast.makeText(context, "Voitit", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only gain experience if battle type is against generated enemy
                 originalPlayerCharacter.addToBattlesWon();
                 originalPlayerCharacter.changeXp(originalEnemyCharacter.getGainedXp(originalPlayerCharacter));
             }
         } else if (win == 2) {
-            this.battleText += playerCharacter.getName() + " has perished\n";
-            Toast.makeText(context, "You perished", Toast.LENGTH_SHORT).show();
+            this.battleText += playerCharacter.getName() + " hävisi\n";
+            Toast.makeText(context, "Hävisit", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
                 s.killCharacter(s.getCharacters().indexOf(originalPlayerCharacter));
             }
         } else if (win == 3) {
-            this.battleText += " both combatants have fallen\n";
-            Toast.makeText(context, "Both fighters perished", Toast.LENGTH_SHORT).show();
+            this.battleText += " molemmat kaatuivat\n";
+            Toast.makeText(context, "Tie", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
