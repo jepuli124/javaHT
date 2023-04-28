@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button graveyardButton;
     private Graveyard graveStorage;
     private Character newCharacter;
+    private ImageView infoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         playButton = findViewById(R.id.PlayButton);
         graveyardButton = findViewById(R.id.GraveyardButton);
         graveStorage = Graveyard.getInstance();
+        infoBtn = findViewById(R.id.ivInfoButton);
         newCharacter = new Character("Chad");
         loadCharacters();
     }
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         //graveStorage.getCharacters().add(newCharacter);
 
         Intent intent = new Intent(MainActivity.this, GraveyardActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeLayoutToInfoPage(View view)   {
+        Intent intent = new Intent(MainActivity.this, InfoPageActivity.class);
         startActivity(intent);
     }
 
