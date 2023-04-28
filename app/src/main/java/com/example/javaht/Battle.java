@@ -58,6 +58,7 @@ public class Battle {
             }
             defendingCharacter.getStatByName("Health").changeLevel(-damageDealt);
              this.battleText += attackingCharacter.getName() + " teki " + String.valueOf(damageDealt) + " vahinkoa\n";
+             this.battleText += defendingCharacter.getName() + " on " + defendingCharacter.getStatByName("Health").getLevel() + "Hp\n";
             return damageDealt;
         } else {
             this.battleText += attackingCharacter.getName() + " ei osunut\n";

@@ -9,10 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseGameModeActivity extends AppCompatActivity {
 
+    private int mode = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamemode_menu);
+
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        CharacterStorage.getInstance().setMode(mode);
 
     }
 
@@ -22,13 +31,12 @@ public class ChooseGameModeActivity extends AppCompatActivity {
     }
 
     public void changeLayoutToTrain(View view)   {
-        CharacterStorage.getInstance().setMode(1);
+        this.mode = 1;
         Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
         startActivity(intent);
     }
 
     public void back(View view){
-        CharacterStorage.getInstance().setMode(0);
         Intent intent = new Intent(ChooseGameModeActivity.this, CharacterListActivity.class);
         startActivity(intent);
     }
