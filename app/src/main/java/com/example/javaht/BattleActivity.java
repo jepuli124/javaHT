@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BattleActivity extends AppCompatActivity {
 
     private Battle battle;
-    TextView battleTextView = (TextView) findViewById(R.id.textViewBatlefield);
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fight_page);
+        TextView battleTextView = findViewById(R.id.textViewBatlefield);
         if (CharacterStorage.getInstance().getEnemyFighter() == null) {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter());
         } else {
@@ -44,6 +44,7 @@ public class BattleActivity extends AppCompatActivity {
 
     private void afterPlayerAttack(){
         // should be called WHEN and ONLY when player has just made their move
+        TextView battleTextView = findViewById(R.id.textViewBatlefield);
         int battleStatusPreAi = battle.checkIfBattleEnded();
         if (battleStatusPreAi == 1 ||battleStatusPreAi == 2 || battleStatusPreAi == 3) {
             battle.endBattle(battleStatusPreAi, this);
