@@ -25,7 +25,7 @@ public class ChooseGameModeActivity extends AppCompatActivity {
 
     }
 
-    public void changeLayoutToSurvial(View view)   {
+    public void changeLayoutToSurvival(View view)   {
         Intent intent = new Intent(ChooseGameModeActivity.this, BattleActivity.class);
         startActivity(intent);
     }
