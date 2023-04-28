@@ -24,19 +24,19 @@ public class BattleActivity extends AppCompatActivity {
         battleTextView.setText(battle.getBattleText());
     }
 
-    public void doQuickAttack(){
+    public void doQuickAttack(View view){
         // can be called with onClick
         battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
         afterPlayerAttack();
     }
 
-    public void doMediumAttack(){
+    public void doMediumAttack(View view){
         // can be called with onClick
         battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
         afterPlayerAttack();
     }
 
-    public void doHeavyAttack(){
+    public void doHeavyAttack(View view){
         // can be called with onClick
         battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
         afterPlayerAttack();
