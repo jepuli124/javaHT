@@ -19,12 +19,13 @@
         android:backgroundTint="#784421"
         android:text="Taistelun kulku"
         android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.508" />
 
     <TextView
         android:id="@+id/textView9"
@@ -38,10 +39,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.058" />
 
     <ImageView
         android:id="@+id/imageViewPlayer"
@@ -53,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.476"
         app:srcCompat="@drawable/armor_1300179_1280" />
 
     <ImageView
@@ -66,7 +67,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.478"
         app:srcCompat="@drawable/crusader_154623_1280" />
 
     <TextView
@@ -99,18 +100,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewEnemy"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/BatlefieldBackBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBatlefield"
-        app:layout_constraintVertical_bias="0.875"
-        app:srcCompat="@drawable/baseline_arrow_back_24" />
-
     <TextView
         android:id="@+id/textViewPlayerLevel"
         android:layout_width="104dp"
@@ -121,7 +110,8 @@
         android:textColor="#212427"
         app:layout_constraintBottom_toTopOf="@+id/textViewBatlefield"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPlayerName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlayerName"
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/textViewEnemyLevel"
@@ -145,15 +135,16 @@
         android:text="Vahva isku"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewBatlefield"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <Button
         android:id="@+id/attackMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:onClick="doMediumAttack"
         android:text="Keskivahva isku"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,6 +162,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attackMedium"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.384" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
