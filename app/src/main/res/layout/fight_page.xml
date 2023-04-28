@@ -18,6 +18,7 @@
         android:background="@drawable/round_corner"
         android:backgroundTint="#784421"
         android:text="Taistelun kulku"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
