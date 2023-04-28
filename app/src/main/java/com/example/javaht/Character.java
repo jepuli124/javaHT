@@ -147,10 +147,7 @@ public class Character implements Serializable {
 
     public int getGainedXp(Character killer) {
         final int battleIncreasePerLevel = 2;
-        // battles required to level up increase by battleIncreasePerLevel per level
-        int requiredBattles = killer.getLevel() - startingLevel * battleIncreasePerLevel + battleIncreasePerLevel;
-        float levelDifferenceMultiplier = ((float) this.getLevel()) / ((float) killer.getLevel());
-        int gainedXp = Math.round(killer.getRequiredXp() / requiredBattles * levelDifferenceMultiplier);
+        int gainedXp = (int)Math.round((this.getRequiredXp() + killer.getRequiredXp()) / 4);
         return gainedXp;
     }
 
