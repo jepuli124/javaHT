@@ -209,7 +209,6 @@ public class Battle {
         this.battleText = "Taistelu päättyi\n";
         if(win == 1){
             this.battleText += playerCharacter.getName() + " voitti\n";
-            Toast.makeText(context, "Voitit", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only gain experience if battle type is against generated enemy
                 originalPlayerCharacter.addToBattlesWon();
@@ -217,7 +216,6 @@ public class Battle {
             }
         } else if (win == 2) {
             this.battleText += playerCharacter.getName() + " hävisi\n";
-            Toast.makeText(context, "Hävisit", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
@@ -225,7 +223,6 @@ public class Battle {
             }
         } else if (win == 3) {
             this.battleText += " molemmat kaatuivat\n";
-            Toast.makeText(context, "Tasapeli", Toast.LENGTH_SHORT).show();
             if (this.getBattleType() == 0) {
                 // only kill character if battle type is against generated enemy
                 CharacterStorage s = CharacterStorage.getInstance();
