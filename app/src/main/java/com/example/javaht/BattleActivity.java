@@ -43,6 +43,7 @@ public class BattleActivity extends AppCompatActivity {
 
     public void doQuickAttack(View view){
         // can be called with onClick
+        battle.setBattleText("");
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.quick_player);
         playerImg.startAnimation(animation);
         battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
@@ -51,6 +52,7 @@ public class BattleActivity extends AppCompatActivity {
 
     public void doMediumAttack(View view){
         // can be called with onClick
+        battle.setBattleText("");
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.medium_player);
         playerImg.startAnimation(animation);
         battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
@@ -59,6 +61,7 @@ public class BattleActivity extends AppCompatActivity {
 
     public void doHeavyAttack(View view){
         // can be called with onClick
+        battle.setBattleText("");
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.heavy_player);
         playerImg.startAnimation(animation);
         battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
