@@ -24,11 +24,11 @@ public class Character implements Serializable {
     public Character(String name) {
         this.name = name;
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 1));
+        this.stats.add(new Stat("Health", 2));
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         int i = this.stats.size();
-        while (i < level) {
+        while (i < startingLevel) {
             this.addToRandomStat();
             i++;
         }
@@ -46,12 +46,13 @@ public class Character implements Serializable {
         // used to generate enemies
         Random r = new Random();
         int i = 0;
-        while (i <= r.nextInt(2) + 2) {
-            this.name += mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
+        this.name = mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
+        while (i < r.nextInt(3)) {
+            this.name += " " + mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
             i++;
         }
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 1));
+        this.stats.add(new Stat("Health", 2));
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         i = this.stats.size();
@@ -103,31 +104,39 @@ public class Character implements Serializable {
     }
 
     private void addToRandomStat() {
-        ArrayList<Integer> statInvestments = new ArrayList<Integer>();
+        // adds 1 point to a random stat with weighted odds towards all stats being similar levels
+        ArrayList<Integer> statAmounts = new ArrayList<Integer>();
+        int totalStats = 0;
         for (Stat stat : this.getStats()) {
             if (stat.getName().equals("Health")) {
-                statInvestments.add( Math.round(((float) stat.getLevel()) / 2));
+                statAmounts.add(Math.round(((float) stat.getLevel()) / 2));
+                totalStats += Math.round(((float) stat.getLevel()) / 2);
             } else {
-                statInvestments.add(stat.getLevel());
+                statAmounts.add(stat.getLevel());
+                totalStats += stat.getLevel();
             }
-
         }
-        Integer totalStatInvestments = 0;
-        for (Integer investment : statInvestments) {
-            totalStatInvestments += level;
+        if (totalStats < 1) {
+            totalStats = 1;
         }
         ArrayList<Integer> statWeights = new ArrayList<Integer>();
-        for (Integer investment : statInvestments) {
-            statWeights.add(Math.round(((float)totalStatInvestments) / ((float)investment)));
+        for (Integer value : statAmounts) {
+            if (value < 1) {
+                value = 1;
+            }
+            statWeights.add((Integer.valueOf((int) Math.ceil(totalStats / value))));
+        }
+        ArrayList<Integer> statIndexes = new ArrayList<Integer>();
+        int j = 0;
+        for (Integer weight : statWeights) {
+            for (int i = 0; i < weight; i++) {
+                statIndexes.add(j);
+            }
+            j++;
         }
         Random r = new Random();
-        int randInt = r.nextInt(totalStatInvestments);
-        int investmentsBelow = 0;
-        for (int i = 0; i < totalStatInvestments; i++) {
-            if ((statInvestments.get(i) < randInt) && (statInvestments.get(i) >= investmentsBelow)) {
-                this.changeStat(this.getStats().get(i).getName(), 1);
-            }
-        }
+        int randInt = r.nextInt(statIndexes.size());
+        this.getStats().get(statIndexes.get(randInt)).changeLevel(1);
     }
 
 
