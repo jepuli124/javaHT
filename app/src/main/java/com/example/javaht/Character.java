@@ -56,6 +56,9 @@ public class Character implements Serializable {
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
         i = this.stats.size();
+        if(level < 1){
+            level = 1;
+        }
         while (i < level+19) {
             this.addToRandomStat();
             i++;
