@@ -48,8 +48,6 @@ public class Battle {
         this.enemyCharacter = cloning(originalEnemyCharacter);
         this.playerCharacter = cloning(originalPlayerCharacter);
 
-
-        this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
         this.battleText += playerCharacter.getName() + " vastaan " + enemyCharacter.getName() + "\n";
