@@ -30,6 +30,9 @@
             android:name=".AfterBattleActivity"
             android:exported="false" />
         <activity
+            android:name=".EquipmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

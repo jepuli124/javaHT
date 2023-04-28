@@ -47,4 +47,8 @@ public class ItemSlot implements Serializable {
             return(1);
         }
     }
+
+    public String getSlotType() {
+        return slotType;
+    }
 }

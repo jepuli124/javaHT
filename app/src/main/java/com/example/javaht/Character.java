@@ -11,6 +11,7 @@ public class Character implements Serializable {
     private String name;
     private ArrayList<Stat> stats;
     private ArrayList<ItemSlot> items;
+    private ArrayList<Item> itemStorage;
     private int level;
     private int xp;
 
@@ -168,6 +169,23 @@ public class Character implements Serializable {
 
     public ArrayList<Stat> getStats() {
         return stats;
+    }
+
+    public ArrayList<Item> getItemStorage() {
+        return itemStorage;
+    }
+
+    public void addItem(Item item){
+        itemStorage.add(item);
+    }
+
+    public void setItem(int id){
+        for(ItemSlot itemSlot : items){
+            if(itemSlot.isCompatible(itemStorage.get(id))){
+                itemStorage.add(itemSlot.getItem());
+                itemSlot.equip(itemStorage.get(id));
+            }
+        }
     }
 
     public ArrayList<ItemSlot> getItems() {

@@ -9,10 +9,14 @@ public class Item implements Serializable {
     private String slotType; // what kind of slot this item can be equipped into. See ItemSlot.java for more info
     private ArrayList<StatChange> effects;
 
-    public Item(String name, String slotType, ArrayList<StatChange> effects) {
+    private int image;
+
+    public Item(String name, String slotType, ArrayList<StatChange> effects, int image) {
         this.name = name;
         this.slotType = slotType;
         this.effects = effects;
+        this.image = image;
+
     }
 
     public String getName() {
