@@ -21,7 +21,7 @@ public class BattleActivity extends AppCompatActivity {
         } else {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter(), CharacterStorage.getInstance().getEnemyFighter());
         }
-        battleTextView.setText(battle.getBattleText());
+        //battleTextView.setText(battle.getBattleText());
     }
 
     public void doQuickAttack(){

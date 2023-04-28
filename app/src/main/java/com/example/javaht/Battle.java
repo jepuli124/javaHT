@@ -27,22 +27,22 @@ public class Battle {
     public Battle(Character originalPlayerCharacter) {
         Random r = new Random();
         this.battleType = 0;
-        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.playerCharacter = new Character(originalPlayerCharacter);
         this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)));
         this.enemyCharacter = new Character(originalEnemyCharacter);
+        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
 
     public Battle(Character originalPlayerCharacter, Character originalEnemyCharacter) {
         this.battleType = 1;
-        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.playerCharacter = new Character(originalPlayerCharacter);
         this.originalEnemyCharacter = originalEnemyCharacter;
         this.enemyCharacter = new Character(originalEnemyCharacter);
+        this.battleText = originalPlayerCharacter.getName() + " is battling " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
