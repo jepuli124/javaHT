@@ -3,12 +3,14 @@ package com.example.javaht;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BattleActivity extends AppCompatActivity {
 
     private Battle battle;
+    TextView battleTextView = (TextView) findViewById(R.id.textViewBatlefield);
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -19,23 +21,24 @@ public class BattleActivity extends AppCompatActivity {
         } else {
             battle = new Battle(CharacterStorage.getInstance().getMainFighter(), CharacterStorage.getInstance().getEnemyFighter());
         }
+        battleTextView.setText(battle.getBattleText());
     }
 
     public void doQuickAttack(){
         // can be called with onClick
-        Battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
+        battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
         afterPlayerAttack();
     }
 
     public void doMediumAttack(){
         // can be called with onClick
-        Battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
+        battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
         afterPlayerAttack();
     }
 
     public void doHeavyAttack(){
         // can be called with onClick
-        Battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
+        battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
         afterPlayerAttack();
     }
 
@@ -44,16 +47,19 @@ public class BattleActivity extends AppCompatActivity {
         int battleStatusPreAi = battle.checkIfBattleEnded();
         if (battleStatusPreAi == 1 ||battleStatusPreAi == 2 || battleStatusPreAi == 3) {
             battle.endBattle(battleStatusPreAi, this);
+            battleTextView.setText(battle.getBattleText());
             endActivity(battleStatusPreAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
         }
-
+        battleTextView.setText(battle.getBattleText());
         if (battleStatusPreAi == 0) {
             battle.doAiAction(battle.getEnemyCharacter(), battle.getPlayerCharacter());
             int battleStatusPostAi = battle.checkIfBattleEnded();
             if (battleStatusPostAi == 1 ||battleStatusPostAi == 2 || battleStatusPostAi == 3) {
                 battle.endBattle(battleStatusPostAi, this);
+                battleTextView.setText(battle.getBattleText());
                 endActivity(battleStatusPostAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
             }
+            battleTextView.setText(battle.getBattleText());
         }
     }
 
