@@ -48,7 +48,7 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         if (battleStatusPreAi == 0) {
-            battle.doAiAction();
+            battle.doAiAction(battle.getEnemyCharacter(), battle.getPlayerCharacter());
             int battleStatusPostAi = battle.checkIfBattleEnded();
             if (battleStatusPostAi == 1 ||battleStatusPostAi == 2 || battleStatusPostAi == 3) {
                 battle.endBattle(battleStatusPostAi, this);

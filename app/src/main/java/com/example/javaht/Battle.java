@@ -3,6 +3,7 @@ package com.example.javaht;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,9 +17,12 @@ public class Battle {
     private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
     private static final int enemyLevelRandomness = 5; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
     // for enemyLevelRandomness, rounding is always done down e. g. 2.5 -> 2
-    private static final AttackingMove quickAttack = new AttackingMove( 2, 100); // comparison value 200
-    private static final AttackingMove mediumAttack = new AttackingMove( 3, 80); // comparison value 240
-    private static final AttackingMove heavyAttack = new AttackingMove( 4, 70); // comparison value 280
+    private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 2, 100); // comparison value 200
+    private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 3, 80); // comparison value 240
+    private static final AttackingMove heavyAttack = new AttackingMove( "Heavy attack", 4, 70); // comparison value 280
+    private static final List<AttackingMove> attackingMoves = new ArrayList<AttackingMove>(List.of(Battle.quickAttack, Battle.mediumAttack, Battle.heavyAttack));
+    // list is used by Ai for easy access
+
 
     public Battle(Character originalPlayerCharacter) {
         Random r = new Random();
@@ -117,9 +121,58 @@ public class Battle {
         return attackResult;
     }
 
-    public void doAiAction() {
-        ;// currently doesn't do anything
+    private static int doSpecificAttack(AttackingMove attackingMove, Character attackingCharacter, Character defendingCharacter) {
+        // same return as Battle.attack()
+        // this should be used by ONLY the Ai and is meant to be private
+        int attackResult = Battle.attack(attackingCharacter, defendingCharacter, attackingMove.getAttackPower(), attackingMove.getHitChance());
+        return attackResult;
+    }
 
+    public void doAiAction(Character attackingCharacter, Character defendingCharacter) {
+        // currently doesn't support status moves and is most likely quite bad
+        for (AttackingMove am : Battle.attackingMoves) {
+            if (am.getHitChance() == 100
+                    && Battle.calculateMinimumDamage(am.getAttackPower(), defendingCharacter.getStatByName("Defense").getLevel(),
+                    attackingCharacter.getStatByName("Attack").getLevel()) >= defendingCharacter.getStatByName("Health").getLevel()) {
+                Battle.doSpecificAttack(am, attackingCharacter, defendingCharacter);
+                return;
+            }
+        }
+        int i, calculatedDamage, currentDamage;
+        float highestKOLikelyHood = 0, highestDamageDealtPerAttack = 0, KOs, damageSum;
+        AttackingMove highestKOAM = Battle.attackingMoves.get(0), highestDamageAM = Battle.attackingMoves.get(0);
+        for (AttackingMove am : Battle.attackingMoves) {
+            KOs = 0;
+            damageSum = 0;
+            calculatedDamage = Math.round(Battle.calculateNonRandomizedDamage(am.getAttackPower(), defendingCharacter.getStatByName("Defense").getLevel(), attackingCharacter.getStatByName("Attack").getLevel()));
+            for (i = 0; i < Battle.damageRandomness; i++) {
+                currentDamage = Math.round(calculatedDamage * (100 - ((float)Battle.damageRandomness / 2) + i + 1));
+                damageSum += currentDamage;
+                if (currentDamage >= defendingCharacter.getStatByName("Health").getLevel()) {
+                    KOs++;
+                }
+            }
+            damageSum = damageSum * am.getHitChance() / 100 / Battle.damageRandomness;
+            if (damageSum > highestDamageDealtPerAttack) {
+                highestDamageDealtPerAttack = damageSum;
+                highestDamageAM = am;
+            }
+            KOs = KOs * am.getHitChance() / 100 / Battle.damageRandomness;
+            if (KOs > highestKOLikelyHood) {
+                highestKOLikelyHood = KOs;
+                highestKOAM = am;
+            }
+        }
+        if (highestDamageAM.equals(highestKOAM)) {
+            Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
+            return;
+        } else if (highestDamageDealtPerAttack / defendingCharacter.getStatByName("Health").getLevel() < highestKOLikelyHood) {
+            Battle.doSpecificAttack(highestKOAM, attackingCharacter, defendingCharacter);
+            return;
+        } else {
+            Battle.doSpecificAttack(highestDamageAM, attackingCharacter, defendingCharacter);
+            return;
+        }
     }
 
     public int checkIfBattleEnded() {
