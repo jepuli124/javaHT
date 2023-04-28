@@ -29,8 +29,11 @@ public class AfterBattleActivity extends AppCompatActivity {
         characterVictories.setText("Voitot: " + Integer.toString(bundle.getInt("victories")));
     }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        CharacterStorage.getInstance().saveCharacters(this);
+    }
 
     public void backToCharacterListActivity(View view){
         Intent intent = new Intent(AfterBattleActivity.this, CharacterListActivity.class);

@@ -45,18 +45,20 @@ public class Battle {
         this.battleType = 1;
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.originalEnemyCharacter = originalEnemyCharacter;
-        this.playerCharacter = cloning(originalPlayerCharacter);
         this.enemyCharacter = cloning(originalEnemyCharacter);
+        this.playerCharacter = cloning(originalPlayerCharacter);
+
 
         this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
+        this.battleText += playerCharacter.getName() + " vastaan " + enemyCharacter.getName() + "\n";
     }
 
     private Character cloning(Character character) throws IOException, ClassNotFoundException {
         ByteArrayOutputStream outPut = new ByteArrayOutputStream(); // Writing character down to clone it
         ObjectOutputStream out = new ObjectOutputStream(outPut);
-        out.writeObject(originalPlayerCharacter);
+        out.writeObject(character);
         ByteArrayInputStream inPut = new ByteArrayInputStream(outPut.toByteArray());
         ObjectInputStream in = new ObjectInputStream(inPut);
         return (Character) in.readObject();
