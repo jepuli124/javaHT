@@ -36,7 +36,7 @@ public class Battle {
         this.playerCharacter = cloning(originalPlayerCharacter);
         this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)) + 2);
         this.enemyCharacter = cloning(originalEnemyCharacter);
-        this.battleText = originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n";
+        this.battleText = (originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n");
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
     }
@@ -50,7 +50,7 @@ public class Battle {
 
         playerCharacter.applyItems();
         enemyCharacter.applyItems();
-        this.battleText += playerCharacter.getName() + " vastaan " + enemyCharacter.getName() + "\n";
+        this.battleText = (playerCharacter.getName() + " vastaan " + enemyCharacter.getName() + "\n");
     }
 
     private Character cloning(Character character) throws IOException, ClassNotFoundException {

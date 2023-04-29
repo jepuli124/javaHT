@@ -1,25 +1,36 @@
-package com.example.javaht;
+package com.example.javaht.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class InfoPageActivity extends AppCompatActivity {
+import com.example.javaht.Character;
+import com.example.javaht.InfoCharacter;
+import com.example.javaht.R;
+
+public class CharacterInfoFragment extends Fragment {
 
     private TextView info;
-    private ImageView backBtn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.info_page);
+        if (getArguments() != null) {
+        }
+    }
 
-        info = findViewById(R.id.infoText);
-        backBtn = findViewById(R.id.infoPageBackButton);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_character_info, container, false);
+
+        info = view.findViewById(R.id.infoText);
         Character character = InfoCharacter.getInstance().getCharacter();
 
         info.setText("\n   HP: "+ character.getStatByName("Health").getLevel() +
@@ -33,16 +44,6 @@ public class InfoPageActivity extends AppCompatActivity {
                 +"\n\nBATTLES FOUGHT: " + character.getBattlesFought()
                 + "\n\nWINS: " + character.getBattlesWon());
 
-    }
-
-    public void changeLayoutToHomePage(View view)   {
-        Intent intent = new Intent(InfoPageActivity.this, CharacterListActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void changeLayoutToItemView(View view)   {
-        Intent intent = new Intent(InfoPageActivity.this, EquipmentActivity.class);
-        startActivity(intent);
+        return view;
     }
 }

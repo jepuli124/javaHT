@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.javaht.fragments.CharacterInfoFragment;
 import com.example.javaht.fragments.EquipmentFragment;
 import com.example.javaht.fragments.ListItemsFragment;
 
@@ -20,17 +21,22 @@ public class TabPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 1) {
-            return new ListItemsFragment();
+        switch (position) {
+            case 0:
+                return new CharacterInfoFragment();
+            case 1:
+                return new EquipmentFragment();
+            case 2:
+                return new ListItemsFragment();
+            default:
+                return new CharacterInfoFragment();
         }
-        else {
-            return new EquipmentFragment();
-        }
+
     }
 
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }
