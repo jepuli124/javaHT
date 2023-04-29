@@ -21,7 +21,7 @@ public class Battle {
     // so those changes can be applied to the non-original copies without worry
     // and there is no need for dedicated hp counters
     private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
-    private static final int enemyLevelRandomness = 15; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
+    private static final int enemyLevelRandomness = 5; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
     // for enemyLevelRandomness, rounding is always done down e. g. 2.5 -> 2
     private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 20, 100);
     private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 30, 80);
