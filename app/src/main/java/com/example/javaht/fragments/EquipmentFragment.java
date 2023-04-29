@@ -1,4 +1,4 @@
-package com.example.javaht;
+package com.example.javaht.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.javaht.Character;
+import com.example.javaht.InfoCharacter;
+import com.example.javaht.R;
 
 import java.util.ArrayList;
 

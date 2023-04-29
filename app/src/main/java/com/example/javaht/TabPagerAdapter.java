@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.javaht.fragments.EquipmentFragment;
+import com.example.javaht.fragments.ListItemsFragment;
+
 
 public class TabPagerAdapter extends FragmentStateAdapter {
 

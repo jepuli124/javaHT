@@ -1,4 +1,4 @@
-package com.example.javaht;
+package com.example.javaht.fragments;
 
 
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.javaht.InfoCharacter;
+import com.example.javaht.ItemAdapter;
+import com.example.javaht.R;
 
 public class ListItemsFragment extends Fragment {
 
