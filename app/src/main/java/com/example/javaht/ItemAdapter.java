@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
     private Context context;
 
-    private Character character;
+    private ArrayList<Item> items;
 
-    public ItemAdapter(Context context,  Character character) {
+    public ItemAdapter(Context context,  ArrayList<Item> items) {
         this.context = context;
-        this.character = character;
+        this.items = items;
     }
     @NonNull
     @Override
@@ -29,9 +29,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position){
 
-        holder.itemName.setText(character.getItemStorage().get(position).getName());
+        holder.itemName.setText(items.get(position).getName());
         String effects = "";
-        for(StatChange effect : character.getItemStorage().get(position).getEffects()){
+        for(StatChange effect : items.get(position).getEffects()){
             effects += effect.getName() + ": " + effect.getValue()+"\n";
         }
         holder.itemEffects.setText(effects);
@@ -58,6 +58,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
 
     @Override
     public int getItemCount(){
-        return character.getItemStorage().size();
+        return items.size();
     }
 }

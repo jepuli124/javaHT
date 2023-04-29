@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,7 +69,7 @@ public class BattleActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.quick_player);
         playerImg.startAnimation(animation);
         battle.doQuickAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 200
-        afterPlayerAttack();
+        afterPlayerAttack(1);
     }
 
     public void doMediumAttack(View view){
@@ -77,7 +78,7 @@ public class BattleActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.medium_player);
         playerImg.startAnimation(animation);
         battle.doMediumAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 240
-        afterPlayerAttack();
+        afterPlayerAttack(2);
     }
 
     public void doHeavyAttack(View view){
@@ -86,10 +87,10 @@ public class BattleActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.heavy_player);
         playerImg.startAnimation(animation);
         battle.doHeavyAttack(battle.getPlayerCharacter(), battle.getEnemyCharacter()); // comparison value 280
-        afterPlayerAttack();
+        afterPlayerAttack(3);
     }
 
-    private void afterPlayerAttack(){
+    private void afterPlayerAttack(int i){
         // should be called WHEN and ONLY when player has just made their move
         TextView battleTextView = findViewById(R.id.textViewBatlefield);
         int battleStatusPreAi = battle.checkIfBattleEnded();
@@ -100,6 +101,17 @@ public class BattleActivity extends AppCompatActivity {
         }
         battleTextView.setText(battle.getBattleText());
         if (battleStatusPreAi == 0) {
+            if (i == 1) {
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.quick_enemy);
+                enemyImg.startAnimation(animation);
+            } if (i == 2) {
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.medium_enemy);
+                enemyImg.startAnimation(animation);
+            } if (i == 3)   {
+                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.heavy_enemy);
+                enemyImg.startAnimation(animation);
+            }
+
             battle.doAiAction(battle.getEnemyCharacter(), battle.getPlayerCharacter());
             int battleStatusPostAi = battle.checkIfBattleEnded();
             if (battleStatusPostAi == 1 ||battleStatusPostAi == 2 || battleStatusPostAi == 3) {

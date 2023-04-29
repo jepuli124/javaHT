@@ -28,9 +28,9 @@ public class ListItemsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_of_items, container, false);
-        //recyclerView = view.findViewById(R.id.rcklistOfItems);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        //recyclerView.setAdapter(new ItemAdapter(view.getContext(), character));
+        recyclerView = view.findViewById(R.id.rcklistOfItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(new ItemAdapter(view.getContext(), character.getItemStorage()));
 
         return view;
     }
