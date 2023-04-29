@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
     private Context context;
+
     private ArrayList<Item> items;
 
     public ItemAdapter(Context context,  ArrayList<Item> items) {
@@ -29,13 +30,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position){
 
         holder.itemName.setText(items.get(position).getName());
-        int pos = holder.getAdapterPosition();
+        String effects = "";
+        for(StatChange effect : items.get(position).getEffects()){
+            effects += effect.getName() + ": " + effect.getValue()+"\n";
+        }
+        holder.itemEffects.setText(effects);
 
         holder.discard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-
+                //Storage.getInstance().delProduct(pos);
                 notifyItemRemoved(pos);
             }
         });
@@ -44,6 +49,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
+
 
                 notifyDataSetChanged();
             }
