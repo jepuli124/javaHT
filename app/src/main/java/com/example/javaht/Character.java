@@ -102,7 +102,7 @@ public class Character implements Serializable {
             pointsInvested += getStatStartingInvestment(statName);
         }
 
-        while (pointsInvested < startingLevel + additionalStartingStatPoints) {
+        while (pointsInvested < level + additionalStartingStatPoints) {
             this.addToRandomStat();
             pointsInvested++;
         }
