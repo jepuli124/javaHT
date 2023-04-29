@@ -53,7 +53,7 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
                 InfoCharacter.getInstance().setCharacter(CharacterStorage.getInstance().getCharacters().get(pos));
-                Intent intent = new Intent(view.getContext(), InfoPageActivity.class);
+                Intent intent = new Intent(view.getContext(), EquipmentActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
