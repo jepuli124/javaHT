@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.012" />
 
     <Button
         android:id="@+id/btnAddCharacter"
@@ -31,7 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCharacterName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCharacterName"
+        app:layout_constraintVertical_bias="0.963" />
 
     <ImageView
         android:id="@+id/btnToCharacterList"
@@ -48,37 +49,37 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Anna hahmolle nimi"
+        android:text="Luo uusi hahmo"
+        android:textColor="#212427"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#212427"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.118" />
 
     <EditText
         android:id="@+id/nHealth"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="valitse HP taso"
+        android:hint="HP (1-8)"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/txtCharacterName"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtCharacterName"
         app:layout_constraintTop_toBottomOf="@+id/txtCharacterName" />
 
     <EditText
         android:id="@+id/nAttack"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Valitse hyökkäys taso"
+        android:hint="Hyökkäys (1-8)"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/nHealth"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,25 +89,81 @@
     <EditText
         android:id="@+id/nDefense"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Valitse puolustus taso"
+        android:hint="Puolustus (1-8)"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/nAttack"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nAttack"
         app:layout_constraintTop_toBottomOf="@+id/nAttack" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Voit aluksi laittaa 8\npistetta statteihin\nMikäli annat vähemmän\nloput pisteet arvotaan hahmolle"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnAddCharacter"
-        app:layout_constraintStart_toStartOf="@+id/btnAddCharacter"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddCharacter" />
+    <RadioGroup
+        android:id="@+id/rgChooseImage"
+        android:layout_width="60dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rB1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp" />
+
+        <RadioButton
+            android:id="@+id/rB2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" />
+
+        <RadioButton
+            android:id="@+id/rB3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/ivKnight"
+        android:layout_width="45dp"
+        android:layout_height="69dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nDefense"
+        app:layout_constraintVertical_bias="0.034"
+        app:srcCompat="@drawable/armor_1300179_1280" />
+
+    <ImageView
+        android:id="@+id/ivMonster"
+        android:layout_width="54dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nDefense"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/cartoon_1292998_640" />
+
+    <ImageView
+        android:id="@+id/ivKing"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nDefense"
+        app:layout_constraintVertical_bias="0.725"
+        app:srcCompat="@drawable/king_37240_640" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

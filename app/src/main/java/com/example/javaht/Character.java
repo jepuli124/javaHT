@@ -18,6 +18,7 @@ public class Character implements Serializable {
     private int id;
     private int battlesFought = 0;
     private int battlesWon = 0;
+    private int imageID;
     private final static int startingLevel = 1;
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
     // the following list is used in generating enemy names
@@ -100,6 +101,9 @@ public class Character implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public void setImage(int imageID) {
+        this.imageID = imageID;
     }
 
     public Stat getStatByName(String name) {
@@ -211,6 +215,7 @@ public class Character implements Serializable {
     }
 
     public int getBattlesFought(){ return battlesFought; }
+    public int getImageID() {return imageID; }
 
     public void addBattlesFought(){battlesFought++;}
 

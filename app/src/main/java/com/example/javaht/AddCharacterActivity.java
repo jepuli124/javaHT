@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,9 @@ public class AddCharacterActivity extends AppCompatActivity {
 
     private TextView characterName, health, attack, defense;
     private ImageView btnBack;
+    private RadioButton image1, image2, image3;
+    private RadioGroup rgImages;
+    int imageID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,6 +31,8 @@ public class AddCharacterActivity extends AppCompatActivity {
         health = findViewById(R.id.nHealth);
         attack = findViewById(R.id.nAttack);
         defense = findViewById(R.id.nDefense);
+
+        rgImages = findViewById(R.id.rgChooseImage);
         health.setText("");
         attack.setText("");
         defense.setText("");
@@ -34,6 +41,20 @@ public class AddCharacterActivity extends AppCompatActivity {
     public void returnToCharacterList(View view){
         Intent intent = new Intent(AddCharacterActivity.this, CharacterListActivity.class);
         startActivity(intent);
+    }
+
+    public void checkRadioGroupStatus(View view)    {
+        switch (rgImages.getCheckedRadioButtonId()) {
+            case R.id.rB1:
+                imageID = R.drawable.armor_1300179_1280;
+                break;
+            case R.id.rB2:
+                imageID = R.drawable.cartoon_1292998_640;
+                break;
+            case R.id.rB3:
+                imageID = R.drawable.king_37240_640;
+                break;
+        }
     }
 
     public void addCharacter(View view){
@@ -65,7 +86,9 @@ public class AddCharacterActivity extends AppCompatActivity {
         attack.setText("");
         defense.setText("");
 
+        checkRadioGroupStatus(view);
         Character character = new Character(characterName.getText().toString(), healthInt, attackInt, defenseint);
+        character.setImage(imageID);
         CharacterStorage.getInstance().addCharacter(character, view.getContext());
         characterName.setText("");
         Toast.makeText(this, "Character Added", Toast.LENGTH_SHORT).show();

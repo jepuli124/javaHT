@@ -12,8 +12,7 @@
         android:id="@+id/imageViewCharacter"
         android:layout_width="45dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/crusader_154623_1280" />
+        android:src="@drawable/armor_1300179_1280" />
 
     <LinearLayout
         android:layout_width="220dp"
