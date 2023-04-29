@@ -35,6 +35,7 @@ public class Character implements Serializable {
             i++;
         }
         this.items = new ArrayList<ItemSlot>();
+        this.itemStorage = new ArrayList<Item>();
         for (i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
         }

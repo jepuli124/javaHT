@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ListItemsFragment extends Fragment {
 
-    private Character character;
     public ListItemsFragment() {
         // Required empty public constructor
     }
@@ -30,7 +29,7 @@ public class ListItemsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_of_items, container, false);
         recyclerView = view.findViewById(R.id.rcklistOfItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new ItemAdapter(view.getContext(), character.getItemStorage()));
+        recyclerView.setAdapter(new ItemAdapter(view.getContext(), InfoCharacter.getInstance().getCharacter().getItemStorage()));
 
         return view;
     }

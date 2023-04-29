@@ -48,6 +48,7 @@ public class EquipmentFragment extends Fragment {
         txtHandEffects.setText("");
 
         Character character = InfoCharacter.getInstance().getCharacter();
+        /*
         for(ItemSlot itemSlot:character.getItems()){
             String txt = "";
             if(!itemSlot.isEmpty()){
@@ -84,9 +85,7 @@ public class EquipmentFragment extends Fragment {
                         break;
                 }
             }
-
-
-        }
+        }*/
 
         return view;
     }
