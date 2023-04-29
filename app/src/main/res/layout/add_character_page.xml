@@ -59,4 +59,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.174" />
 
+    <EditText
+        android:id="@+id/nHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="valitse HP taso"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/txtCharacterName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtCharacterName"
+        app:layout_constraintTop_toBottomOf="@+id/txtCharacterName" />
+
+    <EditText
+        android:id="@+id/nAttack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Valitse hyökkäys taso"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/nHealth"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nHealth"
+        app:layout_constraintTop_toBottomOf="@+id/nHealth" />
+
+    <EditText
+        android:id="@+id/nDefense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Valitse puolustus taso"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/nAttack"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/nAttack"
+        app:layout_constraintTop_toBottomOf="@+id/nAttack" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Voit aluksi laittaa 8\npistetta statteihin\nMikäli annat vähemmän\nloput pisteet arvotaan hahmolle"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddCharacter"
+        app:layout_constraintStart_toStartOf="@+id/btnAddCharacter"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddCharacter" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

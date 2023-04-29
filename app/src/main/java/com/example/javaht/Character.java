@@ -23,17 +23,28 @@ public class Character implements Serializable {
     // the following list is used in generating enemy names
     private final static List<String> mtgCreatureTypes = Arrays.asList("Advisor", "Aetherborn", "Ally", "Angel", "Anteater", "Antelope", "Ape", "Archer", "Archon", "Artificer", "Assassin", "Assembly-Worker", "Atog", "Aurochs", "Avatar", "Badger", "Barbarian", "Basilisk", "Bat", "Bear", "Beast", "Beeble", "Berserker", "Bird", "Blinkmoth", "Boar", "Bringer", "Brushwagg", "Camarid", "Camel", "Caribou", "Carrier", "Cat", "Centaur", "Cephalid", "Chimera", "Citizen", "Cleric", "Cockatrice", "Construct", "Coward", "Crab", "Crocodile", "Cyclops", "Dauthi", "Demon", "Deserter", "Devil", "Dinosaur", "Djinn", "Dragon", "Drake", "Dreadnought", "Drone", "Druid", "Dryad", "Dwarf", "Efreet", "Elder", "Eldrazi", "Elemental", "Elephant", "Elf", "Elk", "Eye", "Faerie", "Ferret", "Fish", "Flagbearer", "Fox", "Frog", "Fungus", "Gargoyle", "Germ", "Giant", "Gnome", "Goat", "Goblin", "God", "Golem", "Gorgon", "Graveborn", "Gremlin", "Griffin", "Hag", "Harpy", "Hellion", "Hippo", "Hippogriff", "Hormarid", "Homunculus", "Horror", "Horse", "Hound", "Human", "Hydra", "Hyena", "Illusion", "Imp", "Incarnation", "Insect", "Jellyfish", "Juggernaut", "Kavu", "Kirin", "Kithkin", "Knight", "Kobold", "Kor", "Kraken", "Lamia", "Lammasu", "Leech", "Leviathan", "Lhurgoyf", "Licid", "Lizard", "Manticore", "Masticore", "Mercenary", "Merfolk", "Metathran", "Minion", "Minotaur", "Mole", "Monger", "Mongoose", "Monk", "Moonfolk", "Mutant", "Myr", "Mystic", "Naga", "Nautilus", "Nephilim", "Nightmare", "Nightstalker", "Ninja", "Noggle", "Nomad", "Nymph", "Octopus", "Ogre", "Ooze", "Orb", "Orc", "Orgg", "Ouphe", "Ox", "Oyster", "Pegasus", "Pentavite", "Pest", "Phelddagrif", "Phoenix", "Pincher", "Pirate", "Plant", "Praetor", "Prism", "Processor", "Rabbit", "Rat", "Rebel", "Reflection", "Rhino", "Rigger", "Rogue", "Sable", "Salamander", "Samurai", "Sand", "Saproling", "Satyr", "Scarecrow", "Scion", "Scorpion", "Scout", "Serf", "Serpent", "Shade", "Shaman", "Shapeshifter", "Sheep", "Siren", "Skeleton", "Slith", "Sliver", "Slug", "Snake", "Soldier", "Soltari", "Spawn", "Specter", "Spellshaper", "Sphinx", "Spider", "Spike", "Spirit", "Splinter", "Sponge", "Squid", "Squirrel", "Starfish", "Surrakar", "Survivor", "Tetravite", "Thalakos", "Thopter", "Thrull", "Treefolk", "Triskelavite", "Troll", "Turtle", "Unicorn", "Vampire", "Vedalken", "Viashino", "Volver", "Wall", "Warrior", "Weird", "Werewolf", "Whale", "Wizard", "Wolf", "Wolverine", "Wombat", "Worm", "Wraith", "Wurm", "Yeti", "Zombie", "Zubera");
 
-    public Character(String name) {
+    public Character(String name, int Health, int Attack, int Defense) { //Choose your starting stats
         this.name = name;
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 10));
-        this.stats.add(new Stat("Attack", 1));
-        this.stats.add(new Stat("Defense", 1));
-        int i = this.stats.size();
-        while (i < startingLevel+19) {
-            this.addToRandomStat();
+        int i = Health + Attack + Defense;
+        while (i < startingLevel+8) {
+            Random r = new Random();
+            int random = r.nextInt(3);
+            if(random == 0){
+                Health++;
+            }
+            else if(random == 1){
+                Attack++;
+            }
+            else if(random == 2){
+                Defense++;
+            }
             i++;
         }
+        this.stats.add(new Stat("Health", 10*Health+100));
+        this.stats.add(new Stat("Attack", Attack+1));
+        this.stats.add(new Stat("Defense", 2*Defense+1));
+
         this.items = new ArrayList<ItemSlot>();
         this.itemStorage = new ArrayList<Item>();
         for (i = 0; i < basicItemLoadout.size(); i++) {
@@ -56,14 +67,14 @@ public class Character implements Serializable {
             i++;
         }
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 10));
+        this.stats.add(new Stat("Health", 100));
         this.stats.add(new Stat("Attack", 1));
         this.stats.add(new Stat("Defense", 1));
-        i = this.stats.size();
+        i = stats.get(0).getLevel() + stats.get(1).getLevel() + stats.get(2).getLevel();
         if(level < 1){
             level = 1;
         }
-        while (i < level+19) {
+        while (i < level+115) {
             this.addToRandomStat();
             i++;
         }
@@ -74,17 +85,6 @@ public class Character implements Serializable {
         this.level = level;
         this.xp = 0;
         this.battlesWon = 0;
-        this.battlesFought = 0;
-    }
-
-    public Character(Character original) {
-        // essentially copies given character, except for id
-        this.name = original.getName();
-        this.stats = new ArrayList<Stat>(original.getStats());
-        this.items = new ArrayList<ItemSlot>(original.getItems());
-        this.level = original.getLevel();
-        this.xp = original.getXp();
-        this.battlesWon = original.getBattlesWon();
         this.battlesFought = 0;
     }
 
