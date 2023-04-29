@@ -117,6 +117,8 @@ public class CharacterStorage {
             ObjectInputStream OIPS = new ObjectInputStream(context.openFileInput("Characters.data"));
             characters = (ArrayList<Character>) OIPS.readObject();
             OIPS.close();
+        }catch (FileNotFoundException e1){
+            Toast.makeText(context, "No save file", Toast.LENGTH_SHORT).show();
         }catch(IOException e2) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
         }catch(ClassNotFoundException e3) {

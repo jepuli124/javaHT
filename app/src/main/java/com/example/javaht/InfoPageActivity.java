@@ -20,13 +20,29 @@ public class InfoPageActivity extends AppCompatActivity {
 
         info = findViewById(R.id.infoText);
         backBtn = findViewById(R.id.infoPageBackButton);
+        Character character = InfoCharacter.getInstance().getCharacter();
 
-        info.setText("\n   HP: \n\nATTACK: \n\nITEMS: \n\nLEVEL: \n\nWINS: ");
+        info.setText("\n   HP: "+ character.getStatByName("Health").getLevel() +
+                " \n\nATTACK: "+ character.getStatByName("Attack").getLevel()
+                +" \n\nDEFENSE: "+ character.getStatByName("Defense").getLevel()
+                /*+"\n\nITEMS: " + character.getItems().get(0).getItem().getName()
+                +"\n" + character.getItems().get(1).getItem().getName()
+                +"\n" + character.getItems().get(2).getItem().getName()
+                +"\n" + character.getItems().get(3).getItem().getName()*/
+                +"\n\nLEVEL: " + character.getLevel()
+                +"\n\nBATTLES FOUGHT: " + character.getBattlesFought()
+                + "\n\nWINS: " + character.getBattlesWon());
 
     }
 
     public void changeLayoutToHomePage(View view)   {
-        Intent intent = new Intent(InfoPageActivity.this, MainActivity.class);
+        Intent intent = new Intent(InfoPageActivity.this, CharacterListActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void changeLayoutToItemView(View view)   {
+        Intent intent = new Intent(InfoPageActivity.this, EquipmentActivity.class);
         startActivity(intent);
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="190dp"
         android:layout_height="100dp"
         android:onClick="changeLayoutToSurvival"
-        android:text="Pelaa botteja vastaan"
+        android:text="Pelaa selviytymistä"
         app:layout_constraintBottom_toTopOf="@+id/CharacterGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="100dp"
         android:layout_marginBottom="276dp"
         android:onClick="changeLayoutToTrain"
-        android:text="Pelaa omia hahmoja vastaan"
+        android:text="Kokeile omia hahmoja vastaan (Ei vaikutusta hahmoihin)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

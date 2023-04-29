@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder{
-    TextView characterName, characterLevel;
-    ImageView characterImage, imgDel;
+    TextView characterName, characterLevel, characterFights;
+    ImageView characterImage, imgDel, imgInfo;
     Button chooseButton;
 
 
@@ -21,5 +21,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder{
         characterImage = itemView.findViewById(R.id.imageViewCharacter);
         imgDel = itemView.findViewById(R.id.imgDel);
         chooseButton = itemView.findViewById(R.id.ChooseButton);
+        imgInfo = itemView.findViewById(R.id.imgInfo);
+        characterFights = itemView.findViewById(R.id.txtFights);
     }
 }

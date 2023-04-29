@@ -2,6 +2,8 @@ package com.example.javaht;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
+import static java.lang.Math.round;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -33,6 +35,9 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
         holder.characterName.setText(CharacterStorage.getInstance().getCharacters().get(position).getName());
         holder.characterLevel.setText("Taso: " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getLevel()));
         holder.characterImage.setVisibility(View.VISIBLE);
+        holder.characterFights.setText("Taistelut " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getBattlesFought()) + " taistelua.\n"
+        + "Voittoja on " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getBattlesWon()) + " taistelua\n");
+
         holder.imgDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +47,18 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
                 notifyItemRemoved(pos);
             }
         });
+
+        holder.imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = holder.getAdapterPosition();
+                InfoCharacter.getInstance().setCharacter(CharacterStorage.getInstance().getCharacters().get(pos));
+                Intent intent = new Intent(view.getContext(), InfoPageActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

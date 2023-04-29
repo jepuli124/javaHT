@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private Button playButton;
     private Button graveyardButton;
     private Graveyard graveStorage;
-    private Character newCharacter;
     private ImageView infoBtn;
 
     @Override
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         graveyardButton = findViewById(R.id.GraveyardButton);
         graveStorage = Graveyard.getInstance();
         infoBtn = findViewById(R.id.ivInfoButton);
-        newCharacter = new Character("Chad");
         loadCharacters();
     }
 
@@ -44,15 +42,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void changeLayoutToInfoPage(View view)   {
-        Intent intent = new Intent(MainActivity.this, InfoPageActivity.class);
+    public void changeLayoutToCredits(View view)   {
+        Intent intent = new Intent(MainActivity.this, CreditsActivity.class);
         startActivity(intent);
     }
 
     public void loadCharacters(){
         CharacterStorage.getInstance().loadCharacters(this);
         Graveyard.getInstance().loadDeadCharacters(this);
-        Toast.makeText(this, "Hahmot ladattu", Toast.LENGTH_SHORT);
     }
 
 }

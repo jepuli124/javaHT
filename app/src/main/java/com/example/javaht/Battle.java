@@ -207,6 +207,8 @@ public class Battle {
 
     public void endBattle(int win, Context context){
         this.battleText = "Taistelu päättyi\n";
+        originalPlayerCharacter.addBattlesFought();
+        originalEnemyCharacter.addBattlesFought();
         if(win == 1){
             this.battleText += playerCharacter.getName() + " voitti\n";
             if (this.getBattleType() == 0) {

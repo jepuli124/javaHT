@@ -16,7 +16,8 @@ public class Character implements Serializable {
     private int xp;
 
     private int id;
-    private int battlesWon;
+    private int battlesFought = 0;
+    private int battlesWon = 0;
     private final static int startingLevel = 1;
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
     // the following list is used in generating enemy names
@@ -40,6 +41,7 @@ public class Character implements Serializable {
         this.level = startingLevel;
         this.xp = 0;
         this.battlesWon = 0;
+        this.battlesFought = 0;
         this.id = CharacterStorage.getInstance().getCharacters().size() ;
     }
 
@@ -71,6 +73,7 @@ public class Character implements Serializable {
         this.level = level;
         this.xp = 0;
         this.battlesWon = 0;
+        this.battlesFought = 0;
     }
 
     public Character(Character original) {
@@ -81,6 +84,7 @@ public class Character implements Serializable {
         this.level = original.getLevel();
         this.xp = original.getXp();
         this.battlesWon = original.getBattlesWon();
+        this.battlesFought = 0;
     }
 
     public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp, int battlesWon) {
@@ -90,6 +94,7 @@ public class Character implements Serializable {
         this.level = level;
         this.xp = xp;
         this.battlesWon = battlesWon;
+        this.battlesFought = 0;
     }
 
     public void setName(String name) {
@@ -203,6 +208,10 @@ public class Character implements Serializable {
     public int getBattlesWon() {
         return battlesWon;
     }
+
+    public int getBattlesFought(){ return battlesFought; }
+
+    public void addBattlesFought(){battlesFought++;}
 
     public int changeXp(int amount) {
         // 0 = all is ok, did NOT level up

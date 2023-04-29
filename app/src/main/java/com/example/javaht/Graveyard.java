@@ -51,6 +51,7 @@ public class Graveyard {
             ObjectInputStream OIPS = new ObjectInputStream(context.openFileInput("DeadCharacters.data"));
             characters = (ArrayList<Character>) OIPS.readObject();
             OIPS.close();
+        }catch (FileNotFoundException e1){
         }catch(IOException e2) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
         }catch(ClassNotFoundException e3) {
