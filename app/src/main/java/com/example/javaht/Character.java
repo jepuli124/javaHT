@@ -3,7 +3,9 @@ package com.example.javaht;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Character implements Serializable {
@@ -20,35 +22,54 @@ public class Character implements Serializable {
     private int battlesWon = 0;
     private int imageID;
     private final static int startingLevel = 1;
+    private final static int additionalStartingStatPoints = 19;
+
+    // statMultipliers has the multipliers for each stat that doesn't use 1
+    // key is the name of the stat and value is the multiplier
+    private static final HashMap<String, Integer> statMultipliers = new HashMap<String, Integer>();
+    static {
+        statMultipliers.put("Health", Integer.valueOf(10));
+        statMultipliers.put("Defense", Integer.valueOf(2));
+    }
+    // statStartingValues has the points invested into each stat (if not specified, 1 will be used)
+    // key is the name of the stat and value is the starting value
+    private static final HashMap<String, Integer> statStartingValues = new HashMap<String, Integer>();
+    static {
+        statStartingValues.put("Health", Integer.valueOf(10));
+        statStartingValues.put("Defense", Integer.valueOf(1));
+    }
     private final static List<ItemSlot> basicItemLoadout = Arrays.asList(new ItemSlot("hand"), new ItemSlot("torso"), new ItemSlot("head"), new ItemSlot("necklace"));
     // the following list is used in generating enemy names
     private final static List<String> mtgCreatureTypes = Arrays.asList("Advisor", "Aetherborn", "Ally", "Angel", "Anteater", "Antelope", "Ape", "Archer", "Archon", "Artificer", "Assassin", "Assembly-Worker", "Atog", "Aurochs", "Avatar", "Badger", "Barbarian", "Basilisk", "Bat", "Bear", "Beast", "Beeble", "Berserker", "Bird", "Blinkmoth", "Boar", "Bringer", "Brushwagg", "Camarid", "Camel", "Caribou", "Carrier", "Cat", "Centaur", "Cephalid", "Chimera", "Citizen", "Cleric", "Cockatrice", "Construct", "Coward", "Crab", "Crocodile", "Cyclops", "Dauthi", "Demon", "Deserter", "Devil", "Dinosaur", "Djinn", "Dragon", "Drake", "Dreadnought", "Drone", "Druid", "Dryad", "Dwarf", "Efreet", "Elder", "Eldrazi", "Elemental", "Elephant", "Elf", "Elk", "Eye", "Faerie", "Ferret", "Fish", "Flagbearer", "Fox", "Frog", "Fungus", "Gargoyle", "Germ", "Giant", "Gnome", "Goat", "Goblin", "God", "Golem", "Gorgon", "Graveborn", "Gremlin", "Griffin", "Hag", "Harpy", "Hellion", "Hippo", "Hippogriff", "Hormarid", "Homunculus", "Horror", "Horse", "Hound", "Human", "Hydra", "Hyena", "Illusion", "Imp", "Incarnation", "Insect", "Jellyfish", "Juggernaut", "Kavu", "Kirin", "Kithkin", "Knight", "Kobold", "Kor", "Kraken", "Lamia", "Lammasu", "Leech", "Leviathan", "Lhurgoyf", "Licid", "Lizard", "Manticore", "Masticore", "Mercenary", "Merfolk", "Metathran", "Minion", "Minotaur", "Mole", "Monger", "Mongoose", "Monk", "Moonfolk", "Mutant", "Myr", "Mystic", "Naga", "Nautilus", "Nephilim", "Nightmare", "Nightstalker", "Ninja", "Noggle", "Nomad", "Nymph", "Octopus", "Ogre", "Ooze", "Orb", "Orc", "Orgg", "Ouphe", "Ox", "Oyster", "Pegasus", "Pentavite", "Pest", "Phelddagrif", "Phoenix", "Pincher", "Pirate", "Plant", "Praetor", "Prism", "Processor", "Rabbit", "Rat", "Rebel", "Reflection", "Rhino", "Rigger", "Rogue", "Sable", "Salamander", "Samurai", "Sand", "Saproling", "Satyr", "Scarecrow", "Scion", "Scorpion", "Scout", "Serf", "Serpent", "Shade", "Shaman", "Shapeshifter", "Sheep", "Siren", "Skeleton", "Slith", "Sliver", "Slug", "Snake", "Soldier", "Soltari", "Spawn", "Specter", "Spellshaper", "Sphinx", "Spider", "Spike", "Spirit", "Splinter", "Sponge", "Squid", "Squirrel", "Starfish", "Surrakar", "Survivor", "Tetravite", "Thalakos", "Thopter", "Thrull", "Treefolk", "Triskelavite", "Troll", "Turtle", "Unicorn", "Vampire", "Vedalken", "Viashino", "Volver", "Wall", "Warrior", "Weird", "Werewolf", "Whale", "Wizard", "Wolf", "Wolverine", "Wombat", "Worm", "Wraith", "Wurm", "Yeti", "Zombie", "Zubera");
 
     public Character(String name, int Health, int Attack, int Defense) { //Choose your starting stats
         this.name = name;
+        ArrayList<String> statsToBeInitialized = new ArrayList<>();
+        statsToBeInitialized.add("Health");
+        statsToBeInitialized.add("Attack");
+        statsToBeInitialized.add("Defense");
+
+        int pointsInvested = 0;
         this.stats = new ArrayList<Stat>();
-        int i = Health + Attack + Defense;
-        while (i < startingLevel+8) {
-            Random r = new Random();
-            int random = r.nextInt(3);
-            if(random == 0){
-                Health++;
-            }
-            else if(random == 1){
-                Attack++;
-            }
-            else if(random == 2){
-                Defense++;
-            }
-            i++;
+        for (String statName : statsToBeInitialized) {
+            int initialStatLevel = (getStatMultiplier(statName) * getStatStartingInvestment(statName));
+            this.stats.add(new Stat(statName, initialStatLevel)); //
+            pointsInvested += getStatStartingInvestment(statName);
         }
-        this.stats.add(new Stat("Health", 10*Health+100));
-        this.stats.add(new Stat("Attack", Attack+1));
-        this.stats.add(new Stat("Defense", 2*Defense+1));
+
+        this.getStatByName("Health").changeLevel(Health * getStatMultiplier("Health"));
+        this.getStatByName("Attack").changeLevel(Attack * getStatMultiplier("Attack"));
+        this.getStatByName("Defense").changeLevel(Defense * getStatMultiplier("Defense"));
+        pointsInvested += Health + Attack + Defense;
+
+        while (pointsInvested < startingLevel + additionalStartingStatPoints) {
+            this.addToRandomStat();
+            pointsInvested++;
+        }
 
         this.items = new ArrayList<ItemSlot>();
         this.itemStorage = new ArrayList<Item>();
-        for (i = 0; i < basicItemLoadout.size(); i++) {
+        for (int i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
         }
         this.level = startingLevel;
@@ -67,18 +88,25 @@ public class Character implements Serializable {
             this.name += " " + mtgCreatureTypes.get(r.nextInt(mtgCreatureTypes.size()));
             i++;
         }
+
+        ArrayList<String> statsToBeInitialized = new ArrayList<>();
+        statsToBeInitialized.add("Health");
+        statsToBeInitialized.add("Attack");
+        statsToBeInitialized.add("Defense");
+
+        int pointsInvested = 0;
         this.stats = new ArrayList<Stat>();
-        this.stats.add(new Stat("Health", 100));
-        this.stats.add(new Stat("Attack", 1));
-        this.stats.add(new Stat("Defense", 1));
-        i = stats.get(0).getLevel() + stats.get(1).getLevel() + stats.get(2).getLevel();
-        if(level < 1){
-            level = 1;
+        for (String statName : statsToBeInitialized) {
+            int initialStatLevel = (getStatMultiplier(statName) * getStatStartingInvestment(statName));
+            this.stats.add(new Stat(statName, initialStatLevel)); //
+            pointsInvested += getStatStartingInvestment(statName);
         }
-        while (i < level+115) {
+
+        while (pointsInvested < startingLevel + additionalStartingStatPoints) {
             this.addToRandomStat();
-            i++;
+            pointsInvested++;
         }
+
         this.items = new ArrayList<ItemSlot>();
         for (i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
@@ -99,9 +127,35 @@ public class Character implements Serializable {
         this.battlesFought = 0;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    private static int getStatStartingInvestment(String statName) {
+        if (Character.statStartingValues.containsKey(statName)) {
+            return Character.statStartingValues.get(statName);
+        } else {
+            return 1;
+        }
     }
+
+    private static int getStatMultiplier(String statName) {
+        if (Character.statMultipliers.containsKey(statName)) {
+            return Character.statMultipliers.get(statName);
+        } else {
+            return 1;
+        }
+    }
+
+    public static int getPointsToBeAssignedOnCreation() {
+        int setInvestments = 0;
+        for (Map.Entry<String, Integer> a : Character.statStartingValues.entrySet()) {
+            setInvestments += a.getValue().intValue();
+        }
+        int value = startingLevel + additionalStartingStatPoints - setInvestments;
+        if (value < 0) {
+            return 0;
+        }else {
+            return value;
+        }
+    }
+
     public void setImage(int imageID) {
         this.imageID = imageID;
     }
@@ -122,13 +176,8 @@ public class Character implements Serializable {
         ArrayList<Integer> statAmounts = new ArrayList<Integer>();
         int totalStats = 0;
         for (Stat stat : this.getStats()) {
-            if (stat.getName().equals("Health")) {
-                statAmounts.add(Math.round(((float) stat.getLevel()) / 10));
-                totalStats += Math.round(((float) stat.getLevel()) / 10);
-            } else {
-                statAmounts.add(stat.getLevel());
-                totalStats += stat.getLevel();
-            }
+            statAmounts.add(Math.round(((float) stat.getLevel()) / Character.getStatMultiplier(stat.getName())));
+            totalStats += Math.round(((float) stat.getLevel()) / Character.getStatMultiplier(stat.getName()));
         }
         if (totalStats < 1) {
             totalStats = 1;
@@ -150,11 +199,8 @@ public class Character implements Serializable {
         }
         Random r = new Random();
         int randInt = r.nextInt(statIndexes.size());
-        if (this.getStats().get(statIndexes.get(randInt)).getName().equals("Health")){
-            this.getStats().get(statIndexes.get(randInt)).changeLevel(10 + r.nextInt(2));
-        } else {
-            this.getStats().get(statIndexes.get(randInt)).changeLevel(1);
-        }
+        Stat statTobeAddedTo = getStats().get(statIndexes.get(randInt));
+        statTobeAddedTo.changeLevel(Character.getStatMultiplier(statTobeAddedTo.getName()));
     }
 
 
