@@ -64,20 +64,20 @@ public class AddCharacterActivity extends AppCompatActivity {
         }
         int healthInt = 0;
         int attackInt = 0;
-        int defenseint = 0;
+        int defenseInt = 0;
 
         if(health.getText().toString().length() >= 1){
             healthInt += Integer.parseInt(health.getText().toString());
         }
-        if(health.getText().toString().length() >= 1){
+        if(attack.getText().toString().length() >= 1){
             attackInt += Integer.parseInt(attack.getText().toString());
         }
-        if(health.getText().toString().length() >= 1){
-            defenseint += Integer.parseInt(defense.getText().toString());
+        if(defense.getText().toString().length() >= 1){
+            defenseInt += Integer.parseInt(defense.getText().toString());
         }
 
 
-        if(healthInt+attackInt+defenseint > 8){
+        if(healthInt+attackInt+defenseInt > Character.getPointsToBeAssignedOnCreation()){
             Toast.makeText(this, "Antamasi tasot ovat liian suuret", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -87,7 +87,7 @@ public class AddCharacterActivity extends AppCompatActivity {
         defense.setText("");
 
         checkRadioGroupStatus(view);
-        Character character = new Character(characterName.getText().toString(), healthInt, attackInt, defenseint);
+        Character character = new Character(characterName.getText().toString(), healthInt, attackInt, defenseInt);
         character.setImage(imageID);
         CharacterStorage.getInstance().addCharacter(character, view.getContext());
         characterName.setText("");
