@@ -62,7 +62,7 @@ public class Character implements Serializable {
         this.getStatByName("Defense").changeLevel(Defense * getStatMultiplier("Defense"));
         pointsInvested += Health + Attack + Defense;
 
-        while (pointsInvested < startingLevel + additionalStartingStatPoints) {
+        while (pointsInvested <= startingLevel + additionalStartingStatPoints) {
             this.addToRandomStat();
             pointsInvested++;
         }
@@ -102,7 +102,7 @@ public class Character implements Serializable {
             pointsInvested += getStatStartingInvestment(statName);
         }
 
-        while (pointsInvested < level + additionalStartingStatPoints) {
+        while (pointsInvested <= level + additionalStartingStatPoints) {
             this.addToRandomStat();
             pointsInvested++;
         }
