@@ -35,6 +35,11 @@ public class AfterBattleActivity extends AppCompatActivity {
         CharacterStorage.getInstance().saveCharacters(this);
     }
 
+    @Override
+    public void onBackPressed()    {
+        //Doesn't allow going back to same fight!
+    }
+
     public void backToCharacterListActivity(View view){
         Intent intent = new Intent(AfterBattleActivity.this, CharacterListActivity.class);
         CharacterStorage.getInstance().setMainFighter(null);

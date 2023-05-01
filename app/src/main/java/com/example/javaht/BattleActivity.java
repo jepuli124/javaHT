@@ -49,6 +49,8 @@ public class BattleActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
         }
+
+        playerImg.setImageResource(battle.getPlayerCharacter().getImageID());
         textViewMainCharacterName.setText(battle.getPlayerCharacter().getName());
         textViewMainCharacterLevel.setText(String.valueOf(battle.getPlayerCharacter().getLevel()));
         textViewEnemyName.setText(battle.getEnemyCharacter().getName());
