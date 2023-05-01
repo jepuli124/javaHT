@@ -28,6 +28,12 @@ public class CharacterListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CharacterListActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void changeLayoutToHomePage(View view)   {
         CharacterStorage.getInstance().setMode(0);  // Whenever moving out of this activity storage mode should be 0
         Intent intent = new Intent(CharacterListActivity.this, MainActivity.class);

@@ -51,6 +51,8 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         playerImg.setImageResource(battle.getPlayerCharacter().getImageID());
+        enemyImg.setImageResource(battle.getEnemyCharacter().getImageID());
+        enemyImg.setScaleX(-1);
         textViewMainCharacterName.setText(battle.getPlayerCharacter().getName());
         textViewMainCharacterLevel.setText(String.valueOf(battle.getPlayerCharacter().getLevel()));
         textViewEnemyName.setText(battle.getEnemyCharacter().getName());
@@ -63,6 +65,11 @@ public class BattleActivity extends AppCompatActivity {
             battleTextView.setText(battle.getBattleText());
             endActivity(battleStatus, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Doesn't allow going back from fight!
     }
 
     public void doQuickAttack(View view){

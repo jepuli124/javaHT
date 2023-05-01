@@ -20,7 +20,7 @@ public class Character implements Serializable {
     private int id;
     private int battlesFought = 0;
     private int battlesWon = 0;
-    private int imageID;
+    private int imageID = R.drawable.crusader_154623_1280;
     private final static int startingLevel = 1;
     private final static int additionalStartingStatPoints = 19;
 
