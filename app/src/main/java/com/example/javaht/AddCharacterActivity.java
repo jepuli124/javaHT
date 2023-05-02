@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AddCharacterActivity extends AppCompatActivity {
 
-    private TextView characterName, health, attack, defense;
+    private TextView characterName, health, attack, defense, info;
     private ImageView btnBack;
     private RadioButton image1, image2, image3;
     private RadioGroup rgImages;
@@ -31,11 +31,18 @@ public class AddCharacterActivity extends AppCompatActivity {
         health = findViewById(R.id.nHealth);
         attack = findViewById(R.id.nAttack);
         defense = findViewById(R.id.nDefense);
-
+        info = findViewById(R.id.txtInfoAddCharacter);
         rgImages = findViewById(R.id.rgChooseImage);
         health.setText("");
         attack.setText("");
         defense.setText("");
+
+
+        info.setText("Voi antaa hahmollesi " + Character.getPointsToBeAssignedOnCreation() + "\n" +
+                "pistettä aloitus tasoiksi.\n" +
+                "Ylimääräiset pisteet\n" +
+                "asetetaan satunnaisesti");
+
     }
 
     public void returnToCharacterList(View view){

@@ -99,6 +99,18 @@
         app:layout_constraintStart_toStartOf="@+id/nAttack"
         app:layout_constraintTop_toBottomOf="@+id/nAttack" />
 
+    <ImageView
+        android:id="@+id/ivKing"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nDefense"
+        app:layout_constraintVertical_bias="0.725"
+        app:srcCompat="@drawable/king_37240_640" />
+
     <RadioGroup
         android:id="@+id/rgChooseImage"
         android:layout_width="60dp"
@@ -107,8 +119,10 @@
         android:layout_marginEnd="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
 
         <RadioButton
             android:id="@+id/rB1"
@@ -131,39 +145,38 @@
     </RadioGroup>
 
     <ImageView
-        android:id="@+id/ivKnight"
-        android:layout_width="45dp"
-        android:layout_height="69dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.423"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nDefense"
-        app:layout_constraintVertical_bias="0.034"
-        app:srcCompat="@drawable/armor_1300179_1280" />
-
-    <ImageView
         android:id="@+id/ivMonster"
         android:layout_width="54dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nDefense"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.396"
         app:srcCompat="@drawable/cartoon_1292998_640" />
 
     <ImageView
-        android:id="@+id/ivKing"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
+        android:id="@+id/ivKnight"
+        android:layout_width="45dp"
+        android:layout_height="69dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddCharacter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.297"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nDefense"
-        app:layout_constraintVertical_bias="0.725"
-        app:srcCompat="@drawable/king_37240_640" />
+        app:layout_constraintVertical_bias="0.029"
+        app:srcCompat="@drawable/armor_1300179_1280" />
+
+    <TextView
+        android:id="@+id/txtInfoAddCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="384dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
