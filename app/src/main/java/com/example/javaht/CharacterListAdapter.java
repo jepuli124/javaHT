@@ -38,7 +38,7 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterViewHold
         holder.characterImage.setImageResource(CharacterStorage.getInstance().getCharacters().get(position).getImageID());
         holder.characterImage.setVisibility(View.VISIBLE);
         holder.characterFights.setText("Taistelut " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getBattlesFought()) + " taistelua.\n"
-        + "Voittoja on " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getBattlesWon()) + " taistelua\n");
+        + "Voittoja selviytymisessä on " + Integer.toString(CharacterStorage.getInstance().getCharacters().get(position).getBattlesWon()) + "\n");
 
         holder.imgDel.setOnClickListener(new View.OnClickListener() {
             @Override
