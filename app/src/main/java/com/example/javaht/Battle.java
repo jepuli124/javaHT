@@ -32,6 +32,7 @@ public class Battle {
     // list is used by Ai for easy access
 
     public Battle(Character originalPlayerCharacter) throws IOException, ClassNotFoundException {
+        // used when fighting against randomly generated enemy
         Random r = new Random();
         this.battleType = 0;
         this.gotItem = 0;
@@ -147,6 +148,8 @@ public class Battle {
 
     public int doAiAction(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
+        // basic idea is to prioritize moves that are likely to win
+        // then compare the best of those chances to the highest expected damage
         int i, calculatedDamage, currentDamage;
         float highestKOLikelyHood = 0, highestDamageDealtPerAttack = 0, KOs, damageSum;
         AttackingMove highestKOAM = Battle.attackingMoves.get(0), highestDamageAM = Battle.attackingMoves.get(0);
