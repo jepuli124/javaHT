@@ -147,13 +147,6 @@ public class Battle {
 
     public int doAiAction(Character attackingCharacter, Character defendingCharacter) {
         // same return as Battle.attack()
-        for (AttackingMove am : Battle.attackingMoves) {
-            if (am.getHitChance() == 100
-                    && Battle.calculateMinimumDamage(am.getAttackPower(), defendingCharacter.getStatByName("Defense").getLevel(),
-                    attackingCharacter.getStatByName("Attack").getLevel()) >= defendingCharacter.getStatByName("Health").getLevel()) {
-                return this.doSpecificAttack(am, attackingCharacter, defendingCharacter);
-            }
-        }
         int i, calculatedDamage, currentDamage;
         float highestKOLikelyHood = 0, highestDamageDealtPerAttack = 0, KOs, damageSum;
         AttackingMove highestKOAM = Battle.attackingMoves.get(0), highestDamageAM = Battle.attackingMoves.get(0);
