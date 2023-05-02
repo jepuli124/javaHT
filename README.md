@@ -19,6 +19,8 @@ Harjoitustyön idea on peli, jossa voi luoda erilaisia hahmoja ja taistella niil
 - Taistelussa mahdollista valita kolmesta eri hyökkäyksestä (Vahva-, keskivahva- ja nopea-isku)
 - Voitetun taistelun jälkeen voi joko pelata uudestaan tai poistua taistelusta
 - Kuolleita hahmoja voi käydä tarkastelemassa hautausmaalla
+- Voitetun taitelun jälkeen saattaa löytää itemin
+- Itemeitä voi varustaa tai muuttaa XP:ksi
 
 ## Luokkakaavio:
 <img width="857" alt="Näyttökuva 2023-05-01 175928" src="https://user-images.githubusercontent.com/120785942/235636600-7cf2240d-bd18-4899-9c65-0eb91522a1d5.png">
