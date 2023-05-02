@@ -25,12 +25,6 @@ public class Graveyard {
          saveDeadCharacters(context);
      }
 
-    public void removeCharacter(int id, Context context){
-         characters.remove(id);
-         saveDeadCharacters(context);
-
-    }
-
     public static Graveyard getInstance(){
          if(graveyard == null){
              graveyard = new Graveyard();

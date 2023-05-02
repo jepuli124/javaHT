@@ -58,7 +58,7 @@ public class EquipmentFragment extends Fragment {
         for (ItemSlot itemSlot : character.getItems()) {
             if (!itemSlot.isEmpty()) {
                 String txt = "";
-                switch (itemSlot.getSlotType()) {
+                switch (itemSlot.getSlotType()) { //Checks which image should be shown
                     case "head":
                         txtHelmetName.setText(itemSlot.getItem().getName());
                         for (StatChange effect : itemSlot.getItem().getEffects()) {
@@ -97,7 +97,7 @@ public class EquipmentFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
+    public void onResume() { //checks updates to pictures
         super.onResume();
         Character character = InfoCharacter.getInstance().getCharacter();
 

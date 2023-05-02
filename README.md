@@ -23,7 +23,8 @@ Harjoitustyön idea on peli, jossa voi luoda erilaisia hahmoja ja taistella niil
 - Itemeitä voi varustaa tai muuttaa XP:ksi
 
 ## Luokkakaavio:
-<img width="857" alt="Näyttökuva 2023-05-02 162035" src="https://user-images.githubusercontent.com/120785942/235678772-21b915db-e21e-4be7-87a1-2bb743ec2f21.png">
+<img width="857" alt="Näyttökuva 2023-05-02 164924" src="https://user-images.githubusercontent.com/120785942/235686507-e6de4c31-75ae-4d33-84c6-f6b24dc245f6.png">
+
 
 
 ## Työnjako:

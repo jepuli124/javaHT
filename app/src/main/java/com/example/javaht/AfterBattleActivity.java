@@ -14,7 +14,7 @@ public class AfterBattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Bundle bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();  // looking in bundle, has cool info init
         int result = bundle.getInt("result");
         if (result == 1) {
             setContentView(R.layout.victory_screen);
@@ -46,7 +46,7 @@ public class AfterBattleActivity extends AppCompatActivity {
 
     public void backToCharacterListActivity(View view){
         Intent intent = new Intent(AfterBattleActivity.this, CharacterListActivity.class);
-        CharacterStorage.getInstance().setMainFighter(null);
+        CharacterStorage.getInstance().setMainFighter(null); // to prevent same characters fighting against each other
         CharacterStorage.getInstance().setEnemyFighter(null);
         startActivity(intent);
     }

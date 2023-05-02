@@ -14,7 +14,7 @@ import java.util.Comparator;
 public class CharacterStorage {
     private ArrayList<Character> characters = new ArrayList<>();
     private int mode = 0;
-    private Character mainFighter = null;
+    private Character mainFighter = null; // storage slots to help battle activity
     private Character enemyFighter = null;
 
     private static CharacterStorage characterStorage = null;
@@ -32,15 +32,6 @@ public class CharacterStorage {
         return characters;
     }
 
-    public ArrayList<Character> getCharactersWOMainFighter(){
-        ArrayList<Character> returnable = new ArrayList<>();
-        for(Character character: characters){
-            if(!character.equals(CharacterStorage.getInstance().getMainFighter())){
-                returnable.add(character);
-            }
-        }
-        return returnable;
-    }
 
     public void addCharacter(Character character, Context context){
         characters.add(character);

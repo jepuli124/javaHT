@@ -135,7 +135,7 @@ public class BattleActivity extends AppCompatActivity {
     public void endActivity(int result, String name, int victories, int gotItem){
         CharacterStorage.getInstance().saveCharacters(this);
         Intent intent = new Intent(BattleActivity.this, AfterBattleActivity.class);
-        Bundle bundle = new Bundle();
+        Bundle bundle = new Bundle();  // let's put cool stuff in bundle
         bundle.putInt("result", result);
         bundle.putInt("victories", victories);
         bundle.putString("name", name);
