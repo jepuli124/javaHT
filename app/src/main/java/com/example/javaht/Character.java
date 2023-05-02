@@ -255,9 +255,8 @@ public class Character implements Serializable {
 
     public void setItem(Item itemToSet) {
         for(ItemSlot itemSlot : items){
-            if(itemSlot.isCompatible(itemStorage.get(id))){
-                itemStorage.add(itemSlot.getItem());
-                itemSlot.equip(itemStorage.get(id));
+            if(itemSlot.isCompatible(itemToSet)){
+                itemSlot.equip(itemToSet);
             }
         }
     }
