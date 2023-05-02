@@ -7,7 +7,7 @@ Konsta Jalkanen,
 Tuomas Lättilä
 
 ## Yleinen kuvaus harjoitustyöstä:
-Harjoitustyön idea on peli, jossa voi luoda erilaisia hahmoja ja taistella niilä toisia hahmoja vastaan. Pelimuodoksi voi valita joko "Selviytymisen tai Harjoittelun". Selviytymis pelimuodossa taistelet hahmollasi ohjelman satunnaisesti luomia vastustajia vastaan, kun taas harjoitus pelimuodossa saat valita vastustajan itse omista hahmoista. 
+Harjoitustyön idea on peli, jossa voi luoda erilaisia hahmoja ja taistella niilä toisia hahmoja vastaan. Pelimuodoksi voi valita joko "Selviytymisen" tai "Harjoittelun". Selviytymis pelimuodossa taistelet hahmollasi ohjelman satunnaisesti luomia vastustajia vastaan, kun taas harjoitus pelimuodossa saat valita vastustajan itse omista hahmoista. Pelimuodoilla on se ero, että harjoitus pelimuoto ei vaikuta mitenkään pelaajan hahmoihin, kun taas selviytymis pelimuodossa hahmon taso voi nousta, se voi saada satunnaisen tavaran tai hahmon kuoltua se siirtyy hautausmaalle. Hahmojen tietoja ja tavaroita voi tarkastella ja tavaroita voi laittaa hahmon päälle tai myydä XP:ksi. 
 
 ## Implementoidut ominaisuudet:
 - Mahdollisuus luoda erilaisia hahmoja
