@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javaht.Character;
 import com.example.javaht.InfoCharacter;
+import com.example.javaht.ItemSlot;
 import com.example.javaht.R;
+import com.example.javaht.StatChange;
 
 import java.util.ArrayList;
 
@@ -52,35 +54,81 @@ public class EquipmentFragment extends Fragment {
         txtHandEffects.setText("");
 
         Character character = InfoCharacter.getInstance().getCharacter();
-        /*
-        for(ItemSlot itemSlot:character.getItems()){
-            String txt = "";
-            if(!itemSlot.isEmpty()){
-                switch (itemSlot.getSlotType()){
+
+        for (ItemSlot itemSlot : character.getItems()) {
+            if (!itemSlot.isEmpty()) {
+                String txt = "";
+                switch (itemSlot.getSlotType()) {
                     case "head":
                         txtHelmetName.setText(itemSlot.getItem().getName());
-                        for (StatChange effect: itemSlot.getItem().getEffects()){
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
+                            txt += effect.getName() + ": " + effect.getValue() + " lv\n";
+                        }
+                        txtHelmetEffects.setText(txt);
+                        break;
+                    case "torso":
+                        txtChestplateName.setText(itemSlot.getItem().getName());
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
+                            txt += effect.getName() + ": " + effect.getValue() + " lv\n";
+                        }
+                        txtChestplateEffects.setText(txt);
+                        break;
+                    case "necklace":
+                        txtNecklaceName.setText(itemSlot.getItem().getName());
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
+                            txt += effect.getName() + ": " + effect.getValue() + " lv\n";
+                        }
+                        txtNecklaceEffects.setText(txt);
+                        break;
+                    case "hand":
+                        txtHandName.setText(itemSlot.getItem().getName());
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
+                            txt += effect.getName() + ": " + effect.getValue() + " lv\n";
+                        }
+                        txtHandEffects.setText(txt);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Character character = InfoCharacter.getInstance().getCharacter();
+
+        for (ItemSlot itemSlot : character.getItems()) {
+            if (!itemSlot.isEmpty()) {
+                String txt = "";
+                switch (itemSlot.getSlotType()) {
+                    case "head":
+                        txtHelmetName.setText(itemSlot.getItem().getName());
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
                             txt += effect.getName() + ": " + effect.getValue() + " lv";
                         }
                         txtHelmetEffects.setText(txt);
                         break;
                     case "torso":
                         txtChestplateName.setText(itemSlot.getItem().getName());
-                        for (StatChange effect: itemSlot.getItem().getEffects()){
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
                             txt += effect.getName() + ": " + effect.getValue() + " lv";
                         }
                         txtChestplateEffects.setText(txt);
                         break;
                     case "necklace":
                         txtNecklaceName.setText(itemSlot.getItem().getName());
-                        for (StatChange effect: itemSlot.getItem().getEffects()){
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
                             txt += effect.getName() + ": " + effect.getValue() + " lv";
                         }
                         txtNecklaceEffects.setText(txt);
                         break;
                     case "hand":
                         txtHandName.setText(itemSlot.getItem().getName());
-                        for (StatChange effect: itemSlot.getItem().getEffects()){
+                        for (StatChange effect : itemSlot.getItem().getEffects()) {
                             txt += effect.getName() + ": " + effect.getValue() + " lv";
                         }
                         txtHandEffects.setText(txt);
@@ -89,8 +137,6 @@ public class EquipmentFragment extends Fragment {
                         break;
                 }
             }
-        }*/
-
-        return view;
+        }
     }
 }

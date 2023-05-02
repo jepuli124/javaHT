@@ -39,10 +39,18 @@ public class Item implements Serializable {
         }
         this.effects = new ArrayList<>();
         Random r = new Random();
-        String statName;
         for (int i = 0; i < Item.maxNumberOfEffects; i++) {
-            statName = statNames.get(r.nextInt(statNames.size()));
-            this.effects.add(new StatChange(statName, generateEffectStrength(character)));
+            StatChange effect= new StatChange(statNames.get(r.nextInt(statNames.size())), generateEffectStrength(character));
+            if(!effect.IsInList(effects)){
+                this.effects.add(effect);
+            } else {
+                for(StatChange stat: effects){
+                    if(stat.getName().equals(effect.getName())){
+                        stat.addValue(generateEffectStrength(character));
+                    }
+                }
+            }
+
         }
     }
 

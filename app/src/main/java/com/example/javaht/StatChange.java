@@ -1,6 +1,7 @@
 package com.example.javaht;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class StatChange implements Serializable {
     private static final long serialVersionUID = 2398L;
@@ -8,7 +9,7 @@ public class StatChange implements Serializable {
     private int value;
 
     public StatChange(String name, int value) {
-        this.statName = statName;
+        this.statName = name;
         this.value = value;
     }
 
@@ -18,5 +19,18 @@ public class StatChange implements Serializable {
 
     public int getValue() {
         return value;
+    }
+
+    public void addValue(int value){
+        this.value += value;
+    }
+
+    public boolean IsInList(ArrayList<StatChange> effects) {
+        for (StatChange effect : effects) {
+            if (effect.getName().equals(statName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

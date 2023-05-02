@@ -35,13 +35,32 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
             effects += effect.getName() + ": " + effect.getValue()+"\n";
         }
         holder.itemEffects.setText(effects);
-
+        int pos = holder.getAdapterPosition();
+        switch (InfoCharacter.getInstance().getCharacter().getItemStorage().get(pos).getSlotType()){
+            case "hand":
+                holder.image.setImageResource(R.drawable.sworddalle);
+                break;
+            case "torso":
+                holder.image.setImageResource(R.drawable.chestplate);
+                break;
+            case "head":
+                holder.image.setImageResource(R.drawable.helmetdalle);
+                break;
+            case "necklace":
+                holder.image.setImageResource(R.drawable.necklace);
+                break;
+            default:
+                holder.image.setImageResource(R.drawable.trophy_305554_640);
+                break;
+        }
         holder.discard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-                //Storage.getInstance().delProduct(pos);
+                //InfoCharacter.getInstance().getCharacter().getItemStorage()
+                InfoCharacter.getInstance().getCharacter().getItemStorage().remove(pos);
                 notifyItemRemoved(pos);
+                CharacterStorage.getInstance().saveCharacters(view.getContext());
             }
         });
 
@@ -49,9 +68,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-
-
+                InfoCharacter.getInstance().getCharacter().setItem(pos);
+                InfoCharacter.getInstance().getCharacter().getItemStorage().remove(pos);
                 notifyDataSetChanged();
+                CharacterStorage.getInstance().saveCharacters(view.getContext());
             }
         });
     }
