@@ -37,7 +37,7 @@ public class Battle {
         this.gotItem = 0;
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.playerCharacter = cloning(originalPlayerCharacter);
-        this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)) + 2);
+        this.originalEnemyCharacter = new Character(originalPlayerCharacter.getBattlesWon() * 2 + 1 + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)) + 2);
         this.enemyCharacter = cloning(originalEnemyCharacter);
         this.battleText = (originalPlayerCharacter.getName() + " vastaan " + originalEnemyCharacter.getName() + "\n");
         playerCharacter.applyItems();
@@ -220,7 +220,7 @@ public class Battle {
                 originalPlayerCharacter.addToBattlesWon();
                 originalPlayerCharacter.changeXp(originalEnemyCharacter.getGainedXp(originalPlayerCharacter));
                 Random r = new Random();
-                if (Battle.chanceToGetItem >= r.nextInt(Battle.chanceToGetItem) + 1) {
+                if (Battle.chanceToGetItem >= r.nextInt(100) + 1) {
                     originalPlayerCharacter.addItem(new Item(originalPlayerCharacter));
                     this.gotItem = 1;
                 }

@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.javaht.Character;
 import com.example.javaht.InfoCharacter;
+import com.example.javaht.ItemSlot;
 import com.example.javaht.R;
+import com.example.javaht.StatChange;
 
 public class CharacterInfoFragment extends Fragment {
 
@@ -36,14 +38,24 @@ public class CharacterInfoFragment extends Fragment {
         info.setText("\n   HP: "+ character.getStatByName("Health").getLevel() +
                 " \n\nATTACK: "+ character.getStatByName("Attack").getLevel()
                 +" \n\nDEFENSE: "+ character.getStatByName("Defense").getLevel()
-                /*+"\n\nITEMS: " + character.getItems().get(0).getItem().getName()
-                +"\n" + character.getItems().get(1).getItem().getName()
-                +"\n" + character.getItems().get(2).getItem().getName()
-                +"\n" + character.getItems().get(3).getItem().getName()*/
                 +"\n\nLEVEL: " + character.getLevel()
+                +"\n\nXP:"+ character.getXp()
                 +"\n\nBATTLES FOUGHT: " + character.getBattlesFought()
                 + "\n\nWINS: " + character.getBattlesWon());
 
+
         return view;
+    }
+
+    public void onResume() {
+        super.onResume();
+        Character character = InfoCharacter.getInstance().getCharacter();
+        info.setText("\n   HP: "+ character.getStatByName("Health").getLevel() +
+                " \n\nATTACK: "+ character.getStatByName("Attack").getLevel()
+                +" \n\nDEFENSE: "+ character.getStatByName("Defense").getLevel()
+                +"\n\nLEVEL: " + character.getLevel()
+                +"\n\nXP:"+ character.getXp()
+                +"\n\nBATTLES FOUGHT: " + character.getBattlesFought()
+                + "\n\nWINS: " + character.getBattlesWon());
     }
 }
