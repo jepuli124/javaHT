@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class Battle {
     private int battleType; // 0 = against randomly generated enemy, 1 = against one of your own characters
+    private int gotItem; // 0 = player did NOT receive item; 1 = player DID receive item
     private String battleText;
     private Character playerCharacter, enemyCharacter;
     private Character originalPlayerCharacter, originalEnemyCharacter; // these are the original objects and should NOT be edited after setting them in a constructor
@@ -22,6 +23,7 @@ public class Battle {
     // and there is no need for dedicated hp counters
     private static final int damageRandomness = 20; // damage ranges from 100% - (randomness / 2)% to 100% + (randomness / 2)%
     private static final int enemyLevelRandomness = 5; // enemy level ranges from playerLevel - (randomness / 2) to playerLevel + (randomness / 2)
+    private static final int chanceToGetItem = 33; // percent of times player gets item after victory
     // for enemyLevelRandomness, rounding is always done down e. g. 2.5 -> 2
     private static final AttackingMove quickAttack = new AttackingMove( "Quick attack", 20, 100);
     private static final AttackingMove mediumAttack = new AttackingMove( "Medium attack", 30, 80);
@@ -32,6 +34,7 @@ public class Battle {
     public Battle(Character originalPlayerCharacter) throws IOException, ClassNotFoundException {
         Random r = new Random();
         this.battleType = 0;
+        this.gotItem = 0;
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.playerCharacter = cloning(originalPlayerCharacter);
         this.originalEnemyCharacter = new Character(originalPlayerCharacter.getLevel() + r.nextInt(Battle.enemyLevelRandomness) - ((int) Math.floor((float) enemyLevelRandomness / 2)) + 2);
@@ -43,6 +46,7 @@ public class Battle {
 
     public Battle(Character originalPlayerCharacter, Character originalEnemyCharacter) throws IOException, ClassNotFoundException {
         this.battleType = 1;
+        this.gotItem = 0;
         this.originalPlayerCharacter = originalPlayerCharacter;
         this.originalEnemyCharacter = originalEnemyCharacter;
         this.enemyCharacter = cloning(originalEnemyCharacter);
@@ -215,6 +219,11 @@ public class Battle {
                 // only gain experience if battle type is against generated enemy
                 originalPlayerCharacter.addToBattlesWon();
                 originalPlayerCharacter.changeXp(originalEnemyCharacter.getGainedXp(originalPlayerCharacter));
+                Random r = new Random();
+                if (Battle.chanceToGetItem >= r.nextInt(Battle.chanceToGetItem) + 1) {
+                    originalPlayerCharacter.addItem(new Item(originalPlayerCharacter));
+                    this.gotItem = 1;
+                }
             }
         } else if (win == 2) {
             this.battleText += playerCharacter.getName() + " hävisi\n";
@@ -235,6 +244,10 @@ public class Battle {
 
     public int getBattleType() {
         return battleType;
+    }
+
+    public int getGotItem() {
+        return this.gotItem;
     }
 
     public Character getPlayerCharacter() {
