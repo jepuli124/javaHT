@@ -124,16 +124,6 @@ public class Character implements Serializable {
         this.battlesFought = 0;
     }
 
-    public Character(String name, ArrayList<Stat> stats, ArrayList<ItemSlot> items, int level, int xp, int battlesWon) {
-        this.name = name;
-        this.stats = new ArrayList<>(stats);
-        this.items = new ArrayList<>(items);
-        this.level = level;
-        this.xp = xp;
-        this.battlesWon = battlesWon;
-        this.battlesFought = 0;
-    }
-
     private static int getStatStartingInvestment(String statName) {
         if (Character.statStartingValues.containsKey(statName)) {
             return Character.statStartingValues.get(statName);
@@ -304,14 +294,6 @@ public class Character implements Serializable {
         battlesWon++;
     }
 
-    public void addToBattlesWon(int amount) {
-        if (battlesWon + amount < 1) {
-            battlesWon = 0;
-        } else {
-            battlesWon += amount;
-        }
-    }
-
     public void changeStat(StatChange statChange) {
         this.getStatByName(statChange.getName()).changeLevel(statChange.getValue());
     }
@@ -322,12 +304,7 @@ public class Character implements Serializable {
         }
     }
 
-    public void changeStat(String name, int change) {
-        getStatByName(name).changeLevel(change);
-    }
-
     public void applyItems() {
-        boolean foundStat = false;
         for (ItemSlot itemSlot : items) {
             if (itemSlot.getItem() != null) {
                 this.changeStat(itemSlot.getItem().getEffects());
