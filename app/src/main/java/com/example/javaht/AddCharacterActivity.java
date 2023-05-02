@@ -45,6 +45,12 @@ public class AddCharacterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AddCharacterActivity.this, CharacterListActivity.class);
+        startActivity(intent);
+    }
+
     public void returnToCharacterList(View view){
         Intent intent = new Intent(AddCharacterActivity.this, CharacterListActivity.class);
         startActivity(intent);

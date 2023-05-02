@@ -213,7 +213,7 @@ public class Character implements Serializable {
 
     public int getRequiredXp() {
         // you can change this formula to one that makes more sense
-        return((this.getLevel() + 19)* 2);
+        return((this.getLevel() + Character.additionalStartingStatPoints)* 2);
     }
 
     public int getGainedXp(Character killer) {
