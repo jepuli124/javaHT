@@ -76,7 +76,7 @@ public class Character implements Serializable {
         this.xp = 0;
         this.battlesWon = 0;
         this.battlesFought = 0;
-        this.id = CharacterStorage.getInstance().getCharacters().size() ;
+        this.id = CharacterStorage.getInstance().getCharacters().size();
     }
 
     public Character(int level) {

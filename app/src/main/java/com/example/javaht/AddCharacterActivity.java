@@ -67,6 +67,7 @@ public class AddCharacterActivity extends AppCompatActivity {
             case R.id.rB3:
                 imageID = R.drawable.king_37240_640;
                 break;
+            default: imageID = R.drawable.armor_1300179_1280;
         }
     }
 
