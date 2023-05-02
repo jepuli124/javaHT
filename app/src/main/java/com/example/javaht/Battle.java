@@ -32,6 +32,7 @@ public class Battle {
     // list is used by Ai for easy access
 
     public Battle(Character originalPlayerCharacter) throws IOException, ClassNotFoundException {
+        // used when fighting against randomly generated enemy
         Random r = new Random();
         this.battleType = 0;
         this.gotItem = 0;
