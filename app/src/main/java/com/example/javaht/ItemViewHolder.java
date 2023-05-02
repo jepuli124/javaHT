@@ -17,6 +17,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
         itemName = itemView.findViewById(R.id.txtItemName);
         itemEffects = itemView.findViewById(R.id.txtItemEffects);
         image = itemView.findViewById(R.id.imgItem);
+
         equip = itemView.findViewById(R.id.btnEquipToCharacter);
         discard = itemView.findViewById(R.id.btnBurnToXp);
 
