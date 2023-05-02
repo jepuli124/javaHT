@@ -45,9 +45,4 @@ public class CharacterListActivity extends AppCompatActivity {
         Intent intent = new Intent(CharacterListActivity.this, AddCharacterActivity.class);
         startActivity(intent);
     }
-    public void chooseFight(View view){
-        CharacterStorage.getInstance().setMode(0); // Whenever moving out of this activity storage mode should be 0
-        Intent intent = new Intent(CharacterListActivity.this, ChooseGameModeActivity.class);
-        startActivity(intent);
-    }
 }
