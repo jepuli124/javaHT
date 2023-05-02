@@ -101,7 +101,7 @@ public class AddCharacterActivity extends AppCompatActivity {
         defense.setText("");
 
         checkRadioGroupStatus(view);
-        Character character = new Character(characterName.getText().toString(), healthInt, attackInt, defenseInt);
+        Character character = new Character(characterName.getText().toString(), healthInt, attackInt, defenseInt);  // Luo hahmo
         character.setImage(imageID);
         CharacterStorage.getInstance().addCharacter(character, view.getContext());
         characterName.setText("");
