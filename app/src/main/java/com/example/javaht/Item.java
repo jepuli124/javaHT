@@ -88,8 +88,13 @@ public class Item implements Serializable {
 
     private static int generateEffectStrength(Character character) {
         Random r = new Random();
-        int signMultiplier = 1 - 2 * r.nextInt(2); // -1 or 1
-        int levelCurve = (int) Math.round(Math.log(5 * character.getLevel() + 5) * 5 - 4);
+        int signMultiplier;
+        if (0 < r.nextInt(4)) {
+            signMultiplier = 1;
+        } else {
+            signMultiplier = -1;
+        }
+        int levelCurve = (int) Math.round(Math.log(2 * character.getLevel()) * 5);
         return signMultiplier * levelCurve + 1;
     }
 
