@@ -71,7 +71,7 @@
         android:id="@+id/txtNewItemFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hahmo löysi uuden esineen"
+        android:text="Hahmo löysi uuden esineen\nVoit tarkastella sitä hahmo infosta"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button"

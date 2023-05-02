@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AfterBattleActivity extends AppCompatActivity {
 
-    TextView characterName, characterVictories;
+    TextView characterName, characterVictories, gotItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -27,6 +27,10 @@ public class AfterBattleActivity extends AppCompatActivity {
         }
         characterName.setText(bundle.getString("name"));
         characterVictories.setText("Voitot: " + Integer.toString(bundle.getInt("victories")));
+        if(bundle.getInt("gotItem") == 1){
+            gotItem = findViewById(R.id.txtNewItemFound);
+            gotItem.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

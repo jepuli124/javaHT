@@ -1,6 +1,9 @@
 package com.example.javaht;
 
-public class StatChange {
+import java.io.Serializable;
+
+public class StatChange implements Serializable {
+    private static final long serialVersionUID = 2398L;
     private String statName;
     private int value;
 
