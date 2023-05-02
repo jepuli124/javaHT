@@ -82,9 +82,9 @@ public class Item implements Serializable {
         Random r = new Random();
         int signMultiplier;
         if (0 < r.nextInt(4)) {
-            signMultiplier = -1;
-        } else {
             signMultiplier = 1;
+        } else {
+            signMultiplier = -1;
         }
         int levelCurve = (int) Math.round(Math.log(2 * character.getLevel()) * 5);
         return signMultiplier * levelCurve + 1;
