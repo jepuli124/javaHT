@@ -62,12 +62,12 @@ public class AddCharacterActivity extends AppCompatActivity {
                 imageID = R.drawable.armor_1300179_1280;
                 break;
             case R.id.rB2:
-                imageID = R.drawable.cartoon_1292998_640;
+                imageID = R.drawable.knight_1300160_640;
                 break;
             case R.id.rB3:
-                imageID = R.drawable.king_37240_640;
+                imageID = R.drawable.hedgehog_156172_640;
                 break;
-            default: imageID = R.drawable.armor_1300179_1280;
+            default: imageID = R.drawable.hedgehog_156172_640;
         }
     }
 
