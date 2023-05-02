@@ -109,4 +109,14 @@ public class Item implements Serializable {
     public ArrayList<StatChange> getEffects() {
         return effects;
     }
+
+    public int ExchangeToXp(){
+        int xp = 0;
+       for(StatChange effect: effects){
+           if(effect.getValue() >= 1){
+               xp += 2*effect.getValue();
+           }
+       }
+       return xp;
+    }
 }

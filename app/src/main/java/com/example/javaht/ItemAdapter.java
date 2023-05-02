@@ -57,7 +57,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>{
             @Override
             public void onClick(View view) {
                 int pos = holder.getAdapterPosition();
-                //InfoCharacter.getInstance().getCharacter().getItemStorage()
+                InfoCharacter.getInstance().getCharacter().changeXp(InfoCharacter.getInstance().getCharacter().getItemStorage().get(pos).ExchangeToXp());
                 InfoCharacter.getInstance().getCharacter().getItemStorage().remove(pos);
                 notifyItemRemoved(pos);
                 CharacterStorage.getInstance().saveCharacters(view.getContext());
