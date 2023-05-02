@@ -63,7 +63,7 @@ public class BattleActivity extends AppCompatActivity {
         if (battleStatus == 1 ||battleStatus == 2 || battleStatus == 3) {
             battle.endBattle(battleStatus, this);
             battleTextView.setText(battle.getBattleText());
-            endActivity(battleStatus, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
+            endActivity(battleStatus, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories(), battle.getGotItem());
         }
     }
 
@@ -106,7 +106,7 @@ public class BattleActivity extends AppCompatActivity {
         if (battleStatusPreAi == 1 ||battleStatusPreAi == 2 || battleStatusPreAi == 3) {
             battle.endBattle(battleStatusPreAi, this);
             battleTextView.setText(battle.getBattleText());
-            endActivity(battleStatusPreAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
+            endActivity(battleStatusPreAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories(), battle.getGotItem());
         }
         battleTextView.setText(battle.getBattleText());
         if (battleStatusPreAi == 0) {
@@ -126,19 +126,20 @@ public class BattleActivity extends AppCompatActivity {
             if (battleStatusPostAi == 1 ||battleStatusPostAi == 2 || battleStatusPostAi == 3) {
                 battle.endBattle(battleStatusPostAi, this);
                 battleTextView.setText(battle.getBattleText());
-                endActivity(battleStatusPostAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories());
+                endActivity(battleStatusPostAi, battle.getOriginalPlayerCharacterName(), battle.getOriginalPlayerCharacterVictories(), battle.getGotItem());
             }
             battleTextView.setText(battle.getBattleText());
         }
     }
 
-    public void endActivity(int result, String name, int victories){
+    public void endActivity(int result, String name, int victories, int gotItem){
         CharacterStorage.getInstance().saveCharacters(this);
         Intent intent = new Intent(BattleActivity.this, AfterBattleActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("result", result);
         bundle.putInt("victories", victories);
         bundle.putString("name", name);
+        bundle.putInt("gotItem", gotItem);
         intent.putExtras(bundle);
         startActivity(intent);
     }
