@@ -258,6 +258,10 @@ public class Battle {
         return enemyCharacter;
     }
 
+    public static int getChanceToGetItem() {
+        return chanceToGetItem;
+    }
+
     public String getOriginalPlayerCharacterName() {
         return this.originalPlayerCharacter.getName();
     }

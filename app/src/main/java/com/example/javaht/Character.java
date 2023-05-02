@@ -111,7 +111,14 @@ public class Character implements Serializable {
         for (i = 0; i < basicItemLoadout.size(); i++) {
             this.items.add(basicItemLoadout.get(i));
         }
+
         this.level = level;
+        i = startingLevel;
+        while ((i < level) && (r.nextInt(100) + 1 < Battle.getChanceToGetItem())) {
+            this.setItem(new Item(this));
+            i++;
+        }
+
         this.xp = 0;
         this.battlesWon = 0;
         this.battlesFought = 0;
@@ -236,6 +243,15 @@ public class Character implements Serializable {
     }
 
     public void setItem(int id){
+        for(ItemSlot itemSlot : items){
+            if(itemSlot.isCompatible(itemStorage.get(id))){
+                itemStorage.add(itemSlot.getItem());
+                itemSlot.equip(itemStorage.get(id));
+            }
+        }
+    }
+
+    public void setItem(Item itemToSet) {
         for(ItemSlot itemSlot : items){
             if(itemSlot.isCompatible(itemStorage.get(id))){
                 itemStorage.add(itemSlot.getItem());
