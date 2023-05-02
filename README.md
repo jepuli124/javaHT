@@ -29,3 +29,6 @@ Harjoitustyön idea on peli, jossa voi luoda erilaisia hahmoja ja taistella niil
 
 ## Työnjako:
 <img width="857" alt="Näyttökuva 2023-05-02 131208" src="https://user-images.githubusercontent.com/120785942/235639997-63fe8a04-cbb0-4f9e-8f8b-2a098a714612.png">
+
+## Linkki esittelyvideoon:
+https://youtu.be/n-_7oGhKz8Y
